@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * Sequential "loading bar" fill used by <MeruSection />.
+ *
+ * Six bars share one 9s cycle (6 rows × 1.5s each). A bar fills over its
+ * 1.5s slot (1.5 / 9 ≈ 16.667% of the cycle) then holds at 100% until the
+ * cycle restarts. Each row applies a staggered `animation-delay` of i × 1.5s,
+ * so rows fill one after another and the whole sequence loops forever.
+ */
+@keyframes meru-fill {
+  0% {
+    width: 0%;
+  }
+  16.667% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.meru-fill {
+  width: 0%;
+  animation: meru-fill 9s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meru-fill {
+    animation: none;
+    width: 100%;
+  }
+}

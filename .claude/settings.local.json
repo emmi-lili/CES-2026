@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm ls *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1000 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render2.png http://localhost:3000)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1000 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render3.png http://localhost:3000)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1000 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render4.png http://localhost:3000)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=600,1100 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render_wide.png http://localhost:3000)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1000 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render5.png http://localhost:3000)",
+      "Bash(node \"/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/measure.js\")",
+      "Bash(cp \"/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/measure.js\" \"./_measure.js\")",
+      "Bash(node ./_measure.js)",
+      "Bash(sips -c 760 780 --cropOffset 0 240 /private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render5.png --out /private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/hero_crop.png)",
+      "Bash(sips -z 700 1100 /private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/hero_crop.png --out /private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/hero_zoom.png)",
+      "Bash(python3 -c 'import struct; d=open\\('\\\\''/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/hero_zoom.png'\\\\'','\\\\''rb'\\\\''\\).read\\(\\); import struct; w,h=struct.unpack\\('\\\\''>II'\\\\'',d[16:24]\\); print\\(w,h\\)')",
+      "Bash(rm -f _measure.js)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"next-server\")",
+      "Bash(python3 -c \"import struct; d=open\\('public/meru.png','rb'\\).read\\(\\); w,h=struct.unpack\\('>II',d[16:24]\\); print\\('meru.png', w,'x',h, 'ratio', round\\(w/h,3\\)\\)\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1100 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/render_meru.png http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"3001 status: %{http_code}\\\\n\" http://localhost:3001)",
+      "Bash(curl -s -o /dev/null http://localhost:3001)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=390,1400 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/d397c0a3-c087-410b-9348-a9e01b796c57/scratchpad/meru_section.png http://localhost:3001)"
+    ]
+  }
+}
