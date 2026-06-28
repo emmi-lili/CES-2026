@@ -55,13 +55,15 @@ function WorldMapWatermark() {
 }
 
 /**
- * "Top 7 destinos de envío de dinero con Meru" — rebuilt in markup with
+ * "Top 7 destinos de envío de dinero con Meru" card — rebuilt in markup with
  * animated, sequentially-filling progress bars behind each country pill.
+ *
+ * Exported on its own so it can be dropped anywhere (e.g. centered inside the
+ * hero) without the surrounding <section> wrapper.
  */
-export default function MeruSection() {
+export function MeruCard() {
   return (
-    <section className="bg-black px-5 py-10">
-      <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[24px] border border-white/5 bg-surface-card px-6 py-8 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)]">
+    <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[24px] border border-white/5 bg-surface-card px-6 py-8 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)]">
         <WorldMapWatermark />
 
         {/* Title block */}
@@ -114,7 +116,15 @@ export default function MeruSection() {
             Más información →
           </a>
         </div>
-      </div>
+    </div>
+  );
+}
+
+/** Standalone section wrapper around {@link MeruCard}. */
+export default function MeruSection() {
+  return (
+    <section className="bg-black px-5 py-10">
+      <MeruCard />
     </section>
   );
 }

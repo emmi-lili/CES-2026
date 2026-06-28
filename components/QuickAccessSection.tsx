@@ -31,7 +31,7 @@ const ITEMS: QuickAccessItem[] = [
     title: "Todo Tix",
     description:
       "Reserva ya tu lugar en nuestro evento y sé el primero/a en entrar y ver el futuro digital.",
-    iconClassName: "h-12 w-16 sm:h-14 sm:w-20",
+    iconClassName: "h-16 w-24 sm:h-20 sm:w-32",
   },
 ];
 
@@ -43,13 +43,13 @@ function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: 
       className="group flex min-h-[280px] cursor-pointer flex-col items-center justify-center gap-4 rounded-[24px] border border-white/15 bg-[#1a1a1a] px-3 py-6 text-center shadow-[0_0_25px_rgba(255,255,255,0.05),0_18px_40px_-20px_rgba(0,0,0,0.9)] transition-transform duration-300 hover:scale-105 sm:px-5"
     >
       {/* Icon / badge */}
-      <span className="flex h-20 items-center justify-center">
+      <span className="flex h-28 items-center justify-center">
         <Image
           src={icon}
           alt={title}
           width={iconSize}
           height={iconSize}
-          className={`object-contain ${iconClassName ?? "h-12 w-12 sm:h-16 sm:w-16"}`}
+          className={`object-contain ${iconClassName ?? "h-20 w-20 sm:h-24 sm:w-24"}`}
         />
       </span>
 

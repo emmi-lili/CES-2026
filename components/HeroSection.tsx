@@ -1,6 +1,7 @@
 import CircuitBackground from "./CircuitBackground";
 import EventCard from "./EventCard";
 import Header from "./Header";
+import { MeruCard } from "./MeruSection";
 import NavBar from "./NavBar";
 
 /**
@@ -34,6 +35,11 @@ export default function HeroSection() {
               <EventCard day="28" city="La Paz" venue="Hotel Casagrande" />
               <EventCard day="30" city="Santa Cruz" venue="Hotel Marriott" />
             </div>
+          </div>
+
+          {/* Top 7 destinos card — centered in the middle of the hero */}
+          <div className="mt-12 flex justify-center">
+            <MeruCard />
           </div>
         </div>
       </div>
