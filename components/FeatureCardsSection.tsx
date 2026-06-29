@@ -9,20 +9,17 @@ type FeatureCard = {
 
 const CARDS: FeatureCard[] = [
   {
-    // TODO: reemplazar por la imagen real de Speakers.
-    image: "/speakers.png",
+    image: "/Speakers.jpeg",
     title: "Speakers",
     subtitle: "Futuro e innovación",
   },
   {
-    // TODO: reemplazar por la imagen real de Networking.
-    image: "/speakers.png",
+    image: "/networking.jpeg",
     title: "Networking",
     subtitle: "Espacios de conversatorios",
   },
   {
-    // TODO: reemplazar por la imagen real de Sponsors.
-    image: "/speakers.png",
+    image: "/sponsors.jpeg",
     title: "Sponsors",
     subtitle: "Las marcas más TOP junto a nosotros",
   },
