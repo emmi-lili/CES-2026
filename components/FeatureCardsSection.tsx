@@ -31,12 +31,11 @@ const CARDS: FeatureCard[] = [
 
 /** A single image-backed feature card. */
 function FeatureCardItem({ image, title, subtitle, href }: FeatureCard) {
-  const Wrapper = href ? Link : "div";
-  return (
-    <Wrapper
-      {...(href ? { href } : {})}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-3xl"
-    >
+  const className =
+    "group relative block aspect-[4/3] overflow-hidden rounded-3xl";
+
+  const content = (
+    <>
       {/* Background image — covers the whole card, gentle zoom on hover */}
       <Image
         src={image}
@@ -59,8 +58,18 @@ function FeatureCardItem({ image, title, subtitle, href }: FeatureCard) {
         </h3>
         <p className="mt-1 text-sm text-white/70">{subtitle}</p>
       </div>
-    </Wrapper>
+    </>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }
 
 /**

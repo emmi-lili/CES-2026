@@ -15,9 +15,9 @@ type Speaker = {
 const SPEAKERS: Speaker[] = [
   // TODO: reemplazar las rutas `photo` por las fotos reales de cada speaker.
   {
-    name: "Ana Martínez",
+    name: "Andrés Kim",
     role: "CEO, FinTech Labs",
-    photo: "/speakers.png",
+    photo: "/AK.png",
     linkedin: "#",
     x: "#",
     featured: true,
