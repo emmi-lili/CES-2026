@@ -1,10 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type FeatureCard = {
   /** TODO: reemplazar por la imagen real de cada card (en /public). */
   image: string;
   title: string;
   subtitle: string;
+  /** Si existe, la card navega a esta ruta al hacer click. */
+  href?: string;
 };
 
 const CARDS: FeatureCard[] = [
@@ -12,6 +15,7 @@ const CARDS: FeatureCard[] = [
     image: "/Speakers.jpeg",
     title: "Speakers",
     subtitle: "Futuro e innovación",
+    href: "/speakers",
   },
   {
     image: "/networking.jpeg",
@@ -26,9 +30,13 @@ const CARDS: FeatureCard[] = [
 ];
 
 /** A single image-backed feature card. */
-function FeatureCardItem({ image, title, subtitle }: FeatureCard) {
+function FeatureCardItem({ image, title, subtitle, href }: FeatureCard) {
+  const Wrapper = href ? Link : "div";
   return (
-    <article className="group relative aspect-[4/3] overflow-hidden rounded-3xl">
+    <Wrapper
+      {...(href ? { href } : {})}
+      className="group relative block aspect-[4/3] overflow-hidden rounded-3xl"
+    >
       {/* Background image — covers the whole card, gentle zoom on hover */}
       <Image
         src={image}
@@ -51,7 +59,7 @@ function FeatureCardItem({ image, title, subtitle }: FeatureCard) {
         </h3>
         <p className="mt-1 text-sm text-white/70">{subtitle}</p>
       </div>
-    </article>
+    </Wrapper>
   );
 }
 

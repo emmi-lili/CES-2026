@@ -13,7 +13,7 @@ const COUNTRIES: Country[] = [
 ];
 
 /** Per-row fill duration; six rows × 1.5s = the 9s loop in globals.css. */
-const STEP_SECONDS = 1.5;
+const STEP_SECONDS = 2;
 
 /**
  * Faint world-map watermark — a dotted hemisphere grid in dark gray. Purely
