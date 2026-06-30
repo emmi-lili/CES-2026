@@ -10,71 +10,110 @@ type Speaker = {
   x: string;
   /** Resalta la card con borde verde y glow. */
   featured?: boolean;
+  /** Ajusta el encuadre de la foto (CSS object-position). Default: center. */
+  objectPosition?: string;
 };
 
 const SPEAKERS: Speaker[] = [
-  // TODO: reemplazar las rutas `photo` por las fotos reales de cada speaker.
+  // TODO: reemplazar `name` y `role` por los datos reales de cada speaker.
   {
-    name: "Andrés Kim",
-    role: "CEO, FinTech Labs",
-    photo: "/AK.png",
+    name: "CN",
+    role: "Speaker",
+    photo: "/CN.png",
     linkedin: "#",
     x: "#",
     featured: true,
+    objectPosition: "center top",
   },
   {
-    name: "Carlos Rivas",
-    role: "Founder, ChainWorks",
-    photo: "/speakers.png",
+    name: "CO",
+    role: "Speaker",
+    photo: "/CO.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Lucía Gómez",
-    role: "Head of Product, Meru",
-    photo: "/speakers.png",
+    name: "EA",
+    role: "Speaker",
+    photo: "/EA.png",
+    linkedin: "#",
+    x: "#",
+    objectPosition: "center top",
+  },
+  {
+    name: "FA",
+    role: "Speaker",
+    photo: "/FA.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Diego Torres",
-    role: "CTO, BlockBolivia",
-    photo: "/speakers.png",
+    name: "GG",
+    role: "Speaker",
+    photo: "/GG.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Sofía Vargas",
-    role: "Investor, Andes Ventures",
-    photo: "/speakers.png",
+    name: "JC",
+    role: "Speaker",
+    photo: "/JC.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Martín Pérez",
-    role: "Lead Engineer, Web3 Co",
-    photo: "/speakers.png",
+    name: "JCR",
+    role: "Speaker",
+    photo: "/JCR.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Valentina Cruz",
-    role: "Director, Crypto LatAm",
-    photo: "/speakers.png",
+    name: "JE",
+    role: "Speaker",
+    photo: "/JE.png",
     linkedin: "#",
     x: "#",
   },
   {
-    name: "Javier Núñez",
-    role: "Researcher, DeFi Institute",
-    photo: "/speakers.png",
+    name: "JPV",
+    role: "Speaker",
+    photo: "/JPV.png",
+    linkedin: "#",
+    x: "#",
+  },
+  {
+    name: "Mario Patiño",
+    role: "Speaker",
+    photo: "/Mario Patiño.png",
+    linkedin: "#",
+    x: "#",
+  },
+  {
+    name: "MFJ",
+    role: "Speaker",
+    photo: "/MFJ.png",
+    linkedin: "#",
+    x: "#",
+  },
+  {
+    name: "MI",
+    role: "Speaker",
+    photo: "/MI.png",
+    linkedin: "#",
+    x: "#",
+  },
+  {
+    name: "PT",
+    role: "Speaker",
+    photo: "/PT.png",
     linkedin: "#",
     x: "#",
   },
 ];
 
 /** A single speaker card. */
-function SpeakerCard({ name, role, photo, linkedin, x, featured }: Speaker) {
+function SpeakerCard({ name, role, photo, linkedin, x, featured, objectPosition }: Speaker) {
   return (
     <article
       className={`group rounded-2xl border bg-white/5 p-3 transition-all duration-300 hover:-translate-y-1 ${
@@ -91,6 +130,7 @@ function SpeakerCard({ name, role, photo, linkedin, x, featured }: Speaker) {
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover"
+          style={{ objectPosition: objectPosition ?? "center" }}
         />
       </div>
 
