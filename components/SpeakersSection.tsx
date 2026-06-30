@@ -17,12 +17,19 @@ type Speaker = {
 const SPEAKERS: Speaker[] = [
   // TODO: reemplazar `name` y `role` por los datos reales de cada speaker.
   {
+    name: "Andrés Kim",
+    role: "Regional Expansion Lead\nTETHER",
+    photo: "/AK.png",
+    linkedin: "https://www.linkedin.com/in/andres-gk/",
+    x: "",
+    objectPosition: "center top",
+  },
+  {
     name: "CN",
     role: "Speaker",
     photo: "/CN.png",
     linkedin: "#",
     x: "#",
-    featured: true,
     objectPosition: "center top",
   },
   {
@@ -53,6 +60,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/GG.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
   {
     name: "JC",
@@ -74,6 +82,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/JE.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
   {
     name: "JPV",
@@ -81,6 +90,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/JPV.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
   {
     name: "Mario Patiño",
@@ -88,6 +98,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/Mario Patiño.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
   {
     name: "MFJ",
@@ -95,6 +106,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/MFJ.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
   {
     name: "MI",
@@ -104,26 +116,23 @@ const SPEAKERS: Speaker[] = [
     x: "#",
   },
   {
-    name: "PT",
-    role: "Speaker",
+    name: "Patricia Tudisco",
+    role: "Intendente de Supervisión Financiera\nBANCO CENTRAL DEL URUGUAY",
     photo: "/PT.png",
     linkedin: "#",
     x: "#",
+    objectPosition: "center top",
   },
 ];
 
 /** A single speaker card. */
-function SpeakerCard({ name, role, photo, linkedin, x, featured, objectPosition }: Speaker) {
+function SpeakerCard({ name, role, photo, linkedin, x, objectPosition }: Speaker) {
   return (
     <article
-      className={`group rounded-2xl border bg-white/5 p-3 transition-all duration-300 hover:-translate-y-1 ${
-        featured
-          ? "border-green-400 shadow-[0_0_25px_-2px_rgba(74,222,128,0.5)]"
-          : "border-white/10 hover:border-white/25"
-      }`}
+      className="group rounded-2xl border border-green-400 bg-white/5 p-3 shadow-[0_0_25px_-2px_rgba(74,222,128,0.5)] transition-all duration-300 hover:-translate-y-1"
     >
       {/* Photo */}
-      <div className="relative aspect-square overflow-hidden rounded-xl">
+      <div className="relative aspect-square overflow-hidden rounded-xl bg-[#4b5563]">
         <Image
           src={photo}
           alt={name}
@@ -137,35 +146,63 @@ function SpeakerCard({ name, role, photo, linkedin, x, featured, objectPosition 
       {/* Info */}
       <div className="mt-3">
         <h3 className="text-base font-bold text-white sm:text-lg">{name}</h3>
-        <p className="text-sm text-white/60">{role}</p>
+        <p className="whitespace-pre-line text-sm text-white/60">{role}</p>
 
         {/* Social links */}
         <div className="mt-3 flex items-center gap-3">
           <a
             href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={`LinkedIn de ${name}`}
             className="text-white/40 transition-colors hover:text-white"
           >
             <LinkedInIcon className="h-4 w-4" />
           </a>
-          <a
-            href={x}
-            aria-label={`X de ${name}`}
-            className="text-white/40 transition-colors hover:text-white"
-          >
-            <XIcon className="h-4 w-4" />
-          </a>
+          {x ? (
+            <a
+              href={x}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`X de ${name}`}
+              className="text-white/40 transition-colors hover:text-white"
+            >
+              <XIcon className="h-4 w-4" />
+            </a>
+          ) : null}
         </div>
       </div>
     </article>
   );
 }
 
+/** Cantidad de speakers por fila (de arriba hacia abajo). */
+const ROW_SIZES = [4, 4, 3, 3];
+
+/** Divide la lista de speakers en filas según ROW_SIZES. */
+function chunkSpeakers(speakers: Speaker[]): Speaker[][] {
+  const rows: Speaker[][] = [];
+  let i = 0;
+  for (const size of ROW_SIZES) {
+    if (i >= speakers.length) break;
+    rows.push(speakers.slice(i, i + size));
+    i += size;
+  }
+  // Cualquier sobrante va en una última fila.
+  if (i < speakers.length) rows.push(speakers.slice(i));
+  return rows;
+}
+
 /**
- * "Nuestros Speakers" — a responsive grid of speaker cards (4 cols desktop,
- * 2 tablet, 1 mobile) over a deep space-navy background.
+ * "Nuestros Speakers" — speakers en orden alfabético, mostrados en filas
+ * de 4, 3, 3 y 3 (centradas), sobre un fondo space-navy.
  */
 export default function SpeakersSection() {
+  const speakers = [...SPEAKERS].sort((a, b) =>
+    a.name.localeCompare(b.name, "es", { sensitivity: "base" })
+  );
+  const rows = chunkSpeakers(speakers);
+
   return (
     <section className="bg-[#05060f] px-4 py-16">
       {/* Heading */}
@@ -178,10 +215,22 @@ export default function SpeakersSection() {
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {SPEAKERS.map((speaker) => (
-          <SpeakerCard key={speaker.name} {...speaker} />
+      {/* Filas (4, 3, 3, 3) centradas */}
+      <div className="mx-auto mt-12 max-w-6xl space-y-6">
+        {rows.map((row, idx) => (
+          <div
+            key={idx}
+            className="flex flex-wrap justify-center gap-6"
+          >
+            {row.map((speaker) => (
+              <div
+                key={speaker.name}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
+              >
+                <SpeakerCard {...speaker} />
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </section>
