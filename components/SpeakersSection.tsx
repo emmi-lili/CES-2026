@@ -77,6 +77,7 @@ const SPEAKERS: Speaker[] = [
     role: "Presidente\nCOMISIÓN NACIONAL DE ACTIVOS DIGITALES EL SALVADOR",
     photo: "/JCR.png",
     linkedin: "https://www.linkedin.com/in/jcreyes/",
+    bio: "Especialista certificado en prevención de delitos financieros con criptoactivos y fundador de Efficiency.ca. Cuenta con más de 20 años de experiencia en los sectores de tecnología, energía y blockchain, con enfoque en gobernanza, estrategia e innovación. Posee una Maestría en Gestión y Finanzas por Harvard y fue reconocido como uno de los 20 hispanos más influyentes de Canadá.",
   },
   {
     name: "Jorge Eguino",
@@ -92,6 +93,7 @@ const SPEAKERS: Speaker[] = [
     photo: "/JPV.png",
     linkedin: "https://www.linkedin.com/in/juanvelasco2/",
     objectPosition: "center top",
+    bio: "Emprendedor tecnológico con más de 10 años de experiencia en la industria. Cofundador de la primera plataforma de delivery online de Bolivia, posteriormente adquirida por PedidosYa, en la mayor adquisición de la historia del comercio electrónico boliviano. Ha liderado el crecimiento y expansión de empresas tecnológicas en los sectores de movilidad, fintech y energía, participando en la creación de startups de alto impacto en Latinoamérica.",
   },
   {
     name: "Mario Patiño",
@@ -283,15 +285,7 @@ function SpeakerModal({
           </span>
 
           {/* Bio con scroll interno + fade si es larga */}
-          <div
-            className="mt-5 overflow-y-auto pr-1 text-sm leading-relaxed text-white/60"
-            style={{
-              maskImage:
-                "linear-gradient(to bottom, black calc(100% - 24px), transparent)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, black calc(100% - 24px), transparent)",
-            }}
-          >
+          <div className="mt-5 overflow-y-auto pr-2 pb-1 text-sm leading-relaxed text-white/60">
             {bioText.split("\n\n").map((paragraph, i) => (
               <p key={i} className={i > 0 ? "mt-3" : undefined}>
                 {paragraph}
