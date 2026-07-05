@@ -384,6 +384,12 @@ export default function SpeakersSection() {
         ))}
       </div>
 
+      {/* Cierre / call-out */}
+      <p className="mx-auto mt-16 max-w-3xl text-center text-2xl font-semibold text-white sm:text-3xl">
+        No te pierdas de este evento internacional que llega a{" "}
+        <span className="text-green-400">Bolivia</span>
+      </p>
+
       {selected ? (
         <SpeakerModal speaker={selected} onClose={() => setSelected(null)} />
       ) : null}

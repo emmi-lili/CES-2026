@@ -23,7 +23,7 @@ const CARDS: FeatureCard[] = [
     subtitle: "Espacios de conversatorios",
   },
   {
-    image: "/sponsors.jpeg",
+    image: "/sponsors3.png",
     title: "Sponsors",
     subtitle: "Las marcas más TOP junto a nosotros",
   },
