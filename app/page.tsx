@@ -1,4 +1,3 @@
-import AgendaSection from "@/components/AgendaSection";
 import FeatureCardsSection from "@/components/FeatureCardsSection";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -10,7 +9,6 @@ export default function Home() {
     <main className="min-h-screen bg-black">
       <HeroSection />
       <QuickAccessSection />
-      <AgendaSection />
       <FeatureCardsSection />
       <SponsorsMarquee />
       <Footer />
