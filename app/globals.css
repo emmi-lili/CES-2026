@@ -49,3 +49,34 @@ body {
     width: 100%;
   }
 }
+
+/*
+ * Marquee infinito de logos de sponsors (<SponsorsMarquee />).
+ *
+ * La pista contiene la secuencia de logos DUPLICADA. Al desplazarla
+ * exactamente -50% (el ancho de una copia), el segundo juego queda donde
+ * empezó el primero, logrando un loop perfecto sin saltos.
+ */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+/* Pausa la animación al pasar el cursor por la franja. */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

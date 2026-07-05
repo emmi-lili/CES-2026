@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export type Sponsor = {
+type Sponsor = {
   name: string;
   /** Logo en /public. Si no se define, se muestra el nombre como placeholder. */
   logo?: string;
@@ -9,19 +9,19 @@ export type Sponsor = {
 };
 
 // TODO: reemplazar por los sponsors reales y sus logos (en /public).
-export const MAIN_SPONSOR: Sponsor = {
+const MAIN_SPONSOR: Sponsor = {
   name: "Meru Pay",
   logo: "/meru.png",
   description: "Liderando el envío de dinero digital",
 };
 
-export const PLATINUM_SPONSORS: Sponsor[] = [
+const PLATINUM_SPONSORS: Sponsor[] = [
   { name: "Sponsor 1" },
   { name: "Sponsor 2" },
   { name: "Sponsor 3" },
 ];
 
-export const GOLD_SPONSORS: Sponsor[] = [
+const GOLD_SPONSORS: Sponsor[] = [
   { name: "Sponsor 1" },
   { name: "Sponsor 2" },
   { name: "Sponsor 3" },

@@ -18,7 +18,7 @@ const CARDS: FeatureCard[] = [
     href: "/speakers",
   },
   {
-    image: "/networking.jpeg",
+    image: "/networking2.png",
     title: "Networking",
     subtitle: "Espacios de conversatorios",
   },
