@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+
 /** Minimal footer — just the "Alianza" logo, centered and small. */
 export default function Footer() {
   return (

@@ -1,5 +1,4 @@
 import EventCard from "./EventCard";
-import Header from "./Header";
 import NavBar from "./NavBar";
 import SectionBackground from "./SectionBackground";
 import { WorldMap } from "./ui/world-map";
@@ -31,7 +30,6 @@ const MAP_CONNECTIONS = [
 export default function HeroSection() {
   return (
     <section className="relative flex min-h-svh w-full flex-col overflow-x-clip bg-black">
-      <Header />
       <NavBar />
 
       {/* Cinematic skyline + neon backdrop fills the remaining viewport height */}
@@ -52,13 +50,26 @@ export default function HeroSection() {
             </h1>
 
             <div className="flex shrink-0 flex-wrap gap-4 sm:gap-5">
-              <EventCard day="28" city="La Paz" hotel="Hotel Casa Grande" />
-              <EventCard day="30" city="Santa Cruz" hotel="Hotel Marriott" />
+              <EventCard
+                day="28"
+                city="La Paz"
+                hotel="Hotel Casa Grande"
+                mapUrl="https://www.google.com/maps/search/?api=1&query=Hotel+Casa+Grande+La+Paz+Bolivia"
+              />
+              <EventCard
+                day="30"
+                city="Santa Cruz"
+                hotel="Hotel Marriott"
+                mapUrl="https://www.google.com/maps/search/?api=1&query=Santa+Cruz+Marriott+Hotel+Bolivia"
+              />
             </div>
           </div>
 
           {/* World map with animated remittance corridors from La Paz */}
           <div className="mt-12 w-full">
+            <p className="mb-4 text-center font-mono text-xs uppercase tracking-[0.25em] text-brand-green sm:text-sm">
+              Top 7 destinos de envío de dinero con Meru
+            </p>
             <WorldMap dots={MAP_CONNECTIONS} lineColor="#3DF07A" />
           </div>
         </div>

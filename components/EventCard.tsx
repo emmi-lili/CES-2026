@@ -7,6 +7,8 @@ export type EventCardProps = {
   city: string;
   /** Hotel name shown below the plate, e.g. "Hotel Casagrande". */
   hotel: string;
+  /** Google Maps URL opened when the hotel is clicked. */
+  mapUrl: string;
   /** Month label, defaults to "julio". */
   month?: string;
 };
@@ -20,6 +22,7 @@ export default function EventCard({
   day,
   city,
   hotel,
+  mapUrl,
   month = "julio",
 }: EventCardProps) {
   return (
@@ -45,11 +48,17 @@ export default function EventCard({
         </div>
       </div>
 
-      {/* Hotel name — below the plate, outside */}
-      <p className="mt-2 flex items-center gap-1.5 text-xs text-white/55">
+      {/* Hotel name — below the plate; opens its location on the map */}
+      <a
+        href={mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-2 inline-flex items-center gap-1.5 text-xs text-white/55 transition-colors hover:text-brand-green"
+        title={`Ver ${hotel} en el mapa`}
+      >
         <MapPinIcon className="size-3.5 shrink-0 text-brand-green" />
-        {hotel}
-      </p>
+        <span className="underline-offset-2 group-hover:underline">{hotel}</span>
+      </a>
     </div>
   );
 }
