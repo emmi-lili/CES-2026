@@ -9,11 +9,13 @@ type Sponsor = {
 };
 
 // TODO: reemplazar por los sponsors reales y sus logos (en /public).
-const MAIN_SPONSOR: Sponsor = {
-  name: "Meru Pay",
-  logo: "/meru.png",
-  description: "Liderando el envío de dinero digital",
-};
+const MAIN_SPONSORS: Sponsor[] = [
+  {
+    name: "Tether",
+    logo: "/TETHER.png",
+    description: "La stablecoin líder a nivel mundial",
+  },
+];
 
 const PLATINUM_SPONSORS: Sponsor[] = [
   { name: "Sponsor 1" },
@@ -99,23 +101,30 @@ export default function SponsorsSection() {
           </p>
         </div>
 
-        {/* MAIN SPONSOR */}
+        {/* MAIN SPONSORS */}
         <div className="mt-16">
-          <TierLabel className="text-brand-green">Main Sponsor</TierLabel>
-          <div className="mt-6 flex justify-center">
-            <div className="group flex w-full flex-col items-center rounded-3xl border border-white/10 bg-[#0d0d0d] p-8 text-center transition-colors duration-300 hover:border-brand-green/50 sm:w-4/5 sm:p-10 lg:w-1/2">
-              <div className="flex h-24 items-center justify-center">
-                <SponsorLogo sponsor={MAIN_SPONSOR} size={96} />
+          <TierLabel className="text-brand-green">
+            {MAIN_SPONSORS.length > 1 ? "Main Sponsors" : "Main Sponsor"}
+          </TierLabel>
+          <div className="mt-6 flex flex-col items-stretch justify-center gap-6 sm:flex-row">
+            {MAIN_SPONSORS.map((sponsor) => (
+              <div
+                key={sponsor.name}
+                className="group flex w-full flex-col items-center rounded-3xl border border-white/10 bg-[#0d0d0d] p-8 text-center transition-colors duration-300 hover:border-brand-green/50 sm:w-1/2 sm:p-10 lg:w-2/5"
+              >
+                <div className="flex h-24 items-center justify-center">
+                  <SponsorLogo sponsor={sponsor} size={96} />
+                </div>
+                <h3 className="mt-5 text-2xl font-bold text-white">
+                  {sponsor.name}
+                </h3>
+                {sponsor.description ? (
+                  <p className="mt-2 text-sm text-white/50">
+                    {sponsor.description}
+                  </p>
+                ) : null}
               </div>
-              <h3 className="mt-5 text-2xl font-bold text-white">
-                {MAIN_SPONSOR.name}
-              </h3>
-              {MAIN_SPONSOR.description ? (
-                <p className="mt-2 text-sm text-white/50">
-                  {MAIN_SPONSOR.description}
-                </p>
-              ) : null}
-            </div>
+            ))}
           </div>
         </div>
 
