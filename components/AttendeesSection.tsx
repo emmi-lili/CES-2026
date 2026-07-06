@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { EnvelopeIcon, SearchIcon } from "./icons";
+import { LinkedInIcon } from "./icons";
+import SectionHeading from "./SectionHeading";
 
 /* -------------------------------------------------------------------------- */
 /*  Data                                                                      */
@@ -22,17 +23,10 @@ type Attendee = {
   categories: string[];
   /** Thematic pills shown on the card. */
   tags: string[];
-  email: string;
+  linkedin: string;
 };
 
-const CATEGORIES = [
-  "All",
-  "DeFi",
-  "Web3",
-  "Investors",
-  "Developers",
-  "NFTs",
-] as const;
+const CATEGORIES = ["Banca", "Compliance", "Fintech"] as const;
 
 const ATTENDEES: Attendee[] = [
   {
@@ -42,9 +36,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "ER",
     avatar: "from-emerald-400 to-teal-500",
-    categories: ["DeFi"],
-    tags: ["Smart Contracts", "Governance", "DAO"],
-    email: "elena@defilab.xyz",
+    categories: ["Fintech"],
+    tags: ["Fintech"],
+    linkedin: "https://www.linkedin.com/in/elena-rios",
   },
   {
     name: "Marcus Chen",
@@ -53,9 +47,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "MC",
     avatar: "from-violet-400 to-brand-violet",
-    categories: ["Developers", "Web3"],
-    tags: ["Solidity", "ZK", "Rollups"],
-    email: "marcus@chainforge.io",
+    categories: ["Fintech"],
+    tags: ["Fintech"],
+    linkedin: "https://www.linkedin.com/in/marcus-chen",
   },
   {
     name: "Priya Nair",
@@ -64,9 +58,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "PN",
     avatar: "from-lime-400 to-brand-green",
-    categories: ["Investors"],
-    tags: ["Seed", "Thesis", "LATAM"],
-    email: "priya@volt.vc",
+    categories: ["Banca", "Fintech"],
+    tags: ["Banca", "Fintech"],
+    linkedin: "https://www.linkedin.com/in/priya-nair",
   },
   {
     name: "Diego Salas",
@@ -75,9 +69,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "DS",
     avatar: "from-purple-400 to-brand-violet",
-    categories: ["Developers", "DeFi"],
-    tags: ["Audits", "EVM", "DeFi"],
-    email: "diego@aleph.dev",
+    categories: ["Compliance"],
+    tags: ["Compliance"],
+    linkedin: "https://www.linkedin.com/in/diego-salas",
   },
   {
     name: "Sofia Klein",
@@ -86,9 +80,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "SK",
     avatar: "from-emerald-400 to-green-500",
-    categories: ["Web3"],
-    tags: ["Stablecoins", "Payments", "GTM"],
-    email: "sofia@rain.xyz",
+    categories: ["Banca", "Fintech"],
+    tags: ["Banca", "Fintech"],
+    linkedin: "https://www.linkedin.com/in/sofia-klein",
   },
   {
     name: "Tom Alvarez",
@@ -97,9 +91,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "TA",
     avatar: "from-fuchsia-400 to-brand-violet",
-    categories: ["NFTs"],
-    tags: ["Generative", "Minting", "Art"],
-    email: "tom@pixelforge.art",
+    categories: ["Fintech"],
+    tags: ["Fintech"],
+    linkedin: "https://www.linkedin.com/in/tom-alvarez",
   },
   {
     name: "Ana López",
@@ -108,9 +102,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "AL",
     avatar: "from-teal-400 to-brand-green",
-    categories: ["Investors"],
-    tags: ["Fund II", "Web3", "Fintech"],
-    email: "ana@andes.vc",
+    categories: ["Banca", "Fintech"],
+    tags: ["Banca", "Fintech"],
+    linkedin: "https://www.linkedin.com/in/ana-lopez",
   },
   {
     name: "Ravi Gupta",
@@ -119,9 +113,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "RG",
     avatar: "from-indigo-400 to-brand-violet",
-    categories: ["Developers"],
-    tags: ["Consensus", "EIPs", "Clients"],
-    email: "ravi@ethereum.org",
+    categories: ["Compliance"],
+    tags: ["Compliance"],
+    linkedin: "https://www.linkedin.com/in/ravi-gupta",
   },
   {
     name: "Camila Vega",
@@ -130,9 +124,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "CV",
     avatar: "from-emerald-400 to-teal-500",
-    categories: ["Web3", "DeFi"],
-    tags: ["Tokenization", "Rails", "LATAM"],
-    email: "camila@koibanx.com",
+    categories: ["Banca", "Fintech"],
+    tags: ["Banca", "Fintech"],
+    linkedin: "https://www.linkedin.com/in/camila-vega",
   },
   {
     name: "Lucas Moreno",
@@ -141,9 +135,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "LM",
     avatar: "from-violet-400 to-purple-500",
-    categories: ["NFTs", "Web3"],
-    tags: ["Marketplace", "Royalties", "DAO"],
-    email: "lucas@mintlabs.io",
+    categories: ["Fintech"],
+    tags: ["Fintech"],
+    linkedin: "https://www.linkedin.com/in/lucas-moreno",
   },
   {
     name: "Nadia Farah",
@@ -152,9 +146,9 @@ const ATTENDEES: Attendee[] = [
     ring: "green",
     initials: "NF",
     avatar: "from-lime-400 to-brand-green",
-    categories: ["Investors", "DeFi"],
-    tags: ["MEV", "AMM", "Research"],
-    email: "nadia@paradigm.xyz",
+    categories: ["Compliance", "Fintech"],
+    tags: ["Compliance", "Fintech"],
+    linkedin: "https://www.linkedin.com/in/nadia-farah",
   },
   {
     name: "Kenji Watanabe",
@@ -163,9 +157,9 @@ const ATTENDEES: Attendee[] = [
     ring: "violet",
     initials: "KW",
     avatar: "from-purple-400 to-brand-violet",
-    categories: ["Developers"],
-    tags: ["Custody", "Keys", "Audits"],
-    email: "kenji@bitgo.com",
+    categories: ["Compliance", "Banca"],
+    tags: ["Compliance", "Banca"],
+    linkedin: "https://www.linkedin.com/in/kenji-watanabe",
   },
 ];
 
@@ -182,7 +176,7 @@ const RING: Record<Ring, string> = {
 
 function AttendeeCard({ attendee }: { attendee: Attendee }) {
   return (
-    <article className="group flex flex-col items-center rounded-2xl border border-white/8 bg-surface-card p-6 text-center transition-all duration-300 hover:border-brand-green/40 hover:shadow-[0_0_28px_-8px_rgba(61,240,122,0.5)]">
+    <article className="panel group flex flex-col items-center rounded-2xl p-6 text-center transition-all duration-300 hover:!border-brand-green/40 hover:shadow-[0_0_28px_-8px_rgba(61,240,122,0.5)]">
       {/* Avatar with colored ring */}
       <span
         className={`flex size-20 items-center justify-center rounded-full bg-gradient-to-br text-xl font-bold text-black ring-2 ring-offset-4 ring-offset-surface-card ${attendee.avatar} ${RING[attendee.ring]}`}
@@ -207,13 +201,15 @@ function AttendeeCard({ attendee }: { attendee: Attendee }) {
         ))}
       </div>
 
-      {/* Contact button pinned to the bottom */}
+      {/* Connect button pinned to the bottom */}
       <a
-        href={`mailto:${attendee.email}`}
-        className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-black/40 py-2.5 text-sm font-medium text-white/80 transition-colors hover:border-white/25 hover:text-white"
+        href={attendee.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-black/40 py-2.5 text-sm font-medium text-white/80 transition-colors hover:border-brand-green/40 hover:text-white"
       >
-        <EnvelopeIcon className="size-4" />
-        Contactar por Email
+        <LinkedInIcon className="size-4" />
+        Conectar por LinkedIn
       </a>
     </article>
   );
@@ -224,31 +220,21 @@ function AttendeeCard({ attendee }: { attendee: Attendee }) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Directorio de asistentes / networking: buscador + chips de categoría y una
- * grilla de tarjetas de perfil con botón "Load More". Grilla responsive
- * (3 → 2 → 1 columnas) y controles que se apilan en mobile.
+ * Directorio de asistentes / networking: chips de categoría y una grilla de
+ * tarjetas de perfil con botón "Ver más". Grilla responsive (3 → 2 → 1
+ * columnas); los chips se envuelven en mobile.
  */
 export default function AttendeesSection() {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string>("All");
+  const [category, setCategory] = useState<string>(CATEGORIES[0]);
   const [visible, setVisible] = useState(PAGE_SIZE);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return ATTENDEES.filter((a) => {
-      const matchesCategory =
-        category === "All" || a.categories.includes(category);
-      const matchesQuery =
-        !q ||
-        a.name.toLowerCase().includes(q) ||
-        a.role.toLowerCase().includes(q) ||
-        a.company.toLowerCase().includes(q);
-      return matchesCategory && matchesQuery;
-    });
-  }, [query, category]);
+  const filtered = useMemo(
+    () => ATTENDEES.filter((a) => a.categories.includes(category)),
+    [category],
+  );
 
-  // Reset pagination whenever the filters change.
-  useEffect(() => setVisible(PAGE_SIZE), [query, category]);
+  // Reset pagination whenever the filter changes.
+  useEffect(() => setVisible(PAGE_SIZE), [category]);
 
   const shown = filtered.slice(0, visible);
   const hasMore = visible < filtered.length;
@@ -262,61 +248,45 @@ export default function AttendeesSection() {
       />
 
       <div className="relative mx-auto max-w-6xl">
-        <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-          Connect with the{" "}
+        <SectionHeading align="left" kicker="Networking">
+          Conecta con el{" "}
           <span className="text-brand-green drop-shadow-[0_0_18px_rgba(61,240,122,0.5)]">
-            Future
+            Futuro
           </span>
-        </h2>
+        </SectionHeading>
 
-        {/* Filters */}
-        <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center">
-          {/* Search */}
-          <div className="relative w-full lg:max-w-md">
-            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-white/40" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by name, role or company..."
-              aria-label="Buscar asistentes"
-              className="w-full rounded-xl border border-white/10 bg-surface-card py-3 pl-11 pr-4 text-sm text-white placeholder:text-white/40 focus:border-brand-green/50 focus:outline-none"
-            />
-          </div>
-
-          {/* Category chips */}
-          <div className="flex flex-wrap gap-2 lg:ml-auto">
-            {CATEGORIES.map((cat) => {
-              const active = cat === category;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setCategory(cat)}
-                  aria-pressed={active}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                    active
-                      ? "border-brand-green/60 bg-brand-green/10 text-brand-green"
-                      : "border-white/10 bg-surface-card text-white/60 hover:text-white"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
+        {/* Category chips */}
+        <div className="mt-8 flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => {
+            const active = cat === category;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setCategory(cat)}
+                aria-pressed={active}
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  active
+                    ? "border-brand-green/60 bg-brand-green/10 text-brand-green"
+                    : "border-white/10 bg-surface-card text-white/60 hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
         {/* Grid */}
         {shown.length > 0 ? (
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((attendee) => (
-              <AttendeeCard key={attendee.email} attendee={attendee} />
+              <AttendeeCard key={attendee.linkedin} attendee={attendee} />
             ))}
           </div>
         ) : (
           <p className="mt-16 text-center text-white/50">
-            No hay asistentes que coincidan con tu búsqueda.
+            No hay asistentes en esta categoría.
           </p>
         )}
 
@@ -328,7 +298,7 @@ export default function AttendeesSection() {
               onClick={() => setVisible((v) => v + PAGE_SIZE)}
               className="rounded-full border border-white/15 bg-surface-card px-8 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-brand-green/50 hover:text-white"
             >
-              Load More Attendees
+              Ver más asistentes
             </button>
           </div>
         )}

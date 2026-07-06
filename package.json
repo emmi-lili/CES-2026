@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "kill": "pkill -9 -f next-server || true",
+    "fresh": "npm run kill; next dev -p 3000"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -42,11 +42,11 @@ export default function HeroSection() {
         <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-5 py-14">
           {/* Headline + date badges — stacked on mobile, side by side on desktop */}
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-6">
-            <h1 className="min-w-0 tracking-tight">
-              <span className="block text-2xl font-extrabold text-white/90 sm:text-4xl">
+            <h1 className="min-w-0">
+              <span className="block font-display text-xl font-semibold text-white/80 sm:text-2xl">
                 El futuro digital
               </span>
-              <span className="mt-1 block text-5xl font-black leading-[0.95] text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.28)] sm:text-7xl">
+              <span className="mt-2 block font-display text-4xl font-extrabold leading-[0.98] text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.22)] sm:text-6xl">
                 Ya comenzó
               </span>
             </h1>

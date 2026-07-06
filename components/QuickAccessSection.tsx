@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import SectionHeading from "./SectionHeading";
+
 type QuickAccessItem = {
   /** Path under /public for the pre-rendered icon/badge asset. */
   icon: string;
@@ -40,7 +42,7 @@ function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: 
   return (
     <button
       type="button"
-      className="group flex min-h-[280px] cursor-pointer flex-col items-center justify-center gap-4 rounded-[24px] border border-white/15 bg-[#1a1a1a] px-3 py-6 text-center shadow-[0_0_25px_rgba(255,255,255,0.05),0_18px_40px_-20px_rgba(0,0,0,0.9)] transition-transform duration-300 hover:scale-105 sm:px-5"
+      className="panel group flex min-h-[280px] cursor-pointer flex-col items-center justify-center gap-4 rounded-[24px] px-3 py-6 text-center shadow-[0_18px_40px_-20px_rgba(0,0,0,0.9)] transition-all duration-300 hover:scale-[1.03] hover:!border-brand-green/40 sm:px-5"
     >
       {/* Icon / badge */}
       <span className="flex h-28 items-center justify-center">
@@ -72,9 +74,9 @@ function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: 
 export default function QuickAccessSection() {
   return (
     <section className="bg-black px-4 py-12">
-      <h2 className="mb-10 px-5 text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+      <SectionHeading kicker="Explora" className="mb-10 px-5">
         Todo en un solo lugar
-      </h2>
+      </SectionHeading>
       <div className="mx-auto grid max-w-3xl grid-cols-3 gap-3 sm:gap-6">
         {ITEMS.map((item) => (
           <QuickAccessCard key={item.title} {...item} />

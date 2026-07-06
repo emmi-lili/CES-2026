@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LinkedInIcon, XIcon } from "./icons";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 type Speaker = {
   name: string;
@@ -149,7 +150,7 @@ function SpeakerCard({
   return (
     <article
       onClick={() => onSelect(speaker)}
-      className="group cursor-pointer rounded-2xl border border-green-400 bg-white/5 p-3 shadow-[0_0_25px_-2px_rgba(74,222,128,0.5)] transition-all duration-300 hover:-translate-y-1"
+      className="group cursor-pointer rounded-2xl border border-brand-green/50 bg-white/5 p-3 shadow-[0_0_25px_-2px_rgba(61,240,122,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-green"
     >
       {/* Photo */}
       <div className="relative aspect-square overflow-hidden rounded-xl bg-[#4b5563]">
@@ -237,7 +238,7 @@ function SpeakerModal({
       {/* Card */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`relative flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-green-400/40 bg-[#0d0d0d] shadow-[0_0_40px_-5px_rgba(74,222,128,0.5)] transition-all duration-300 md:flex-row ${
+        className={`relative flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-brand-green/40 bg-[#0d0d0d] shadow-[0_0_40px_-5px_rgba(61,240,122,0.5)] transition-all duration-300 md:flex-row ${
           show ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
         style={{ maxHeight: "90vh" }}
@@ -281,7 +282,7 @@ function SpeakerModal({
           <h3 className="text-2xl font-bold text-white sm:text-3xl">{name}</h3>
 
           {/* Badge tipo pill */}
-          <span className="mt-3 inline-flex w-fit items-center rounded-full bg-green-500/15 px-3 py-1 text-sm font-medium text-green-400">
+          <span className="mt-3 inline-flex w-fit items-center rounded-full bg-brand-green/15 px-3 py-1 font-mono text-xs font-medium uppercase tracking-wider text-brand-green">
             {roleBadge(role)}
           </span>
 
@@ -357,14 +358,13 @@ export default function SpeakersSection() {
   return (
     <section className="bg-[#05060f] px-4 py-16">
       {/* Heading */}
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-bold text-white sm:text-5xl">
-          Nuestros Speakers
-        </h2>
-        <p className="mt-3 text-base text-white/60 sm:text-lg">
-          Líderes que están construyendo el futuro digital
-        </p>
-      </div>
+      <SectionHeading
+        kicker="Lineup"
+        subtitle="Líderes que están construyendo el futuro digital"
+        className="mx-auto max-w-2xl"
+      >
+        Nuestros Speakers
+      </SectionHeading>
 
       {/* Filas (4, 3, 3, 3) centradas */}
       <div className="mx-auto mt-12 max-w-6xl space-y-6">
@@ -389,7 +389,7 @@ export default function SpeakersSection() {
       {/* Cierre / call-out */}
       <p className="mx-auto mt-16 max-w-3xl text-center text-2xl font-semibold text-white sm:text-3xl">
         No te pierdas de este evento internacional que llega a{" "}
-        <span className="text-green-400">Bolivia</span>
+        <span className="text-brand-green">Bolivia</span>
       </p>
 
       {selected ? (

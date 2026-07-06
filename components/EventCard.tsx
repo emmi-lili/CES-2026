@@ -37,7 +37,9 @@ export default function EventCard({
             <span className="text-4xl font-extrabold leading-none text-white sm:text-5xl">
               {day}
             </span>
-            <span className="text-sm font-semibold text-white/75">{month}</span>
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-white/70">
+              {month}
+            </span>
           </div>
           <p className="mt-1.5 text-sm font-medium text-white/60">{city}</p>
         </div>

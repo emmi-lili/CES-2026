@@ -78,7 +78,7 @@ const AGENDAS: Agenda[] = [
     dayLabel: "DÍA 1 DE 2",
     venue: "LA PAZ · CASAGRANDE",
     subtitle:
-      "Un día enfocado en el futuro de los pagos digitales, stablecoins y la nueva economía on-chain.",
+      "Un día enfocado en el futuro de la privacidad, stablecoins y la nueva economía on-chain.",
     now: t("10:45"),
     capacity: 85,
     calendarDay: 28,
@@ -348,7 +348,7 @@ function SessionCard({
 
       {/* Stage / format badge */}
       <span
-        className={`absolute right-3 top-3 rounded-full border px-2 py-0.5 text-[10px] font-semibold tracking-wide ${
+        className={`absolute right-3 top-3 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
           session.networking
             ? "border-brand-green/30 bg-black/40 text-brand-green"
             : accent.badge
@@ -359,7 +359,7 @@ function SessionCard({
 
       <div className="pl-2 pr-20">
         {isNow && (
-          <span className="mb-1 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-violet">
+          <span className="mb-1 flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-brand-violet">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand-violet opacity-75" />
               <span className="relative inline-flex size-2 rounded-full bg-brand-violet" />
@@ -452,7 +452,7 @@ function Timeline({ agenda }: { agenda: Agenda }) {
           </div>
           <span
             style={{ top: y(agenda.now) }}
-            className="absolute left-0 z-10 -translate-y-1/2 rounded-full bg-brand-green px-2 py-0.5 text-[10px] font-bold text-black shadow-[0_0_14px_rgba(61,240,122,0.7)]"
+            className="absolute left-0 z-10 -translate-y-1/2 rounded-full bg-brand-green px-2 py-0.5 font-mono text-[10px] font-bold text-black shadow-[0_0_14px_rgba(61,240,122,0.7)]"
           >
             {fmt(agenda.now)} NOW
           </span>
@@ -488,8 +488,8 @@ function NextUpCard({ agenda }: { agenda: Agenda }) {
   if (!next) return null;
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-surface-card p-5">
-      <span className="text-xs font-bold uppercase tracking-wider text-brand-violet">
+    <div className="panel rounded-2xl p-5">
+      <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-violet">
         Next up
       </span>
       <h4 className="mt-2 text-base font-semibold leading-snug text-white">
@@ -522,7 +522,7 @@ function MiniCalendar({ eventDay }: { eventDay: number }) {
   ];
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-surface-card p-5">
+    <div className="panel rounded-2xl p-5">
       <div className="flex items-center justify-between">
         <span className="text-sm font-semibold text-white">Julio 2026</span>
         <div className="flex gap-1">
@@ -573,10 +573,12 @@ function MiniCalendar({ eventDay }: { eventDay: number }) {
 
 function CapacityCard({ capacity }: { capacity: number }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-surface-card p-5">
+    <div className="panel rounded-2xl p-5">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-white/50">Capacity</span>
-        <span className="text-sm font-bold text-brand-green">
+        <span className="font-mono text-xs uppercase tracking-wider text-white/50">
+          Capacity
+        </span>
+        <span className="font-mono text-sm font-bold text-brand-green">
           {capacity}% Full
         </span>
       </div>
@@ -642,7 +644,10 @@ export default function AgendaSection() {
         {/* Header */}
         <header className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h2 className="text-3xl font-extrabold tracking-tight text-white drop-shadow-[0_0_18px_rgba(61,240,122,0.45)] sm:text-4xl">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.3em] text-brand-green">
+              Cronograma
+            </span>
+            <h2 className="mt-2 font-display text-2xl font-bold text-white drop-shadow-[0_0_18px_rgba(61,240,122,0.45)] sm:text-4xl">
               Agenda: {agenda.dateLabel}
             </h2>
             <p className="mt-2 max-w-md text-sm text-white/55 sm:text-base">

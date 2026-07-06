@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import SectionHeading from "./SectionHeading";
+
 type Sponsor = {
   name: string;
   /** Logo en /public. Si no se define, se muestra el nombre como placeholder. */
@@ -52,10 +54,26 @@ function SponsorLogo({
       />
     );
   }
+  // Reserved-slot placeholder (until the real logo is added).
   return (
-    <span className="text-center text-sm font-semibold text-white/70">
-      {sponsor.name}
-    </span>
+    <div className="flex flex-col items-center gap-2 text-white/30 transition-colors duration-300 group-hover:text-white/45">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6"
+        aria-hidden="true"
+      >
+        <rect x="3" y="4.5" width="18" height="15" rx="2.5" strokeDasharray="3 3" />
+        <path d="M12 9v6M9 12h6" />
+      </svg>
+      <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
+        Disponible
+      </span>
+    </div>
   );
 }
 
@@ -69,7 +87,7 @@ function TierLabel({
 }) {
   return (
     <p
-      className={`text-center text-xs font-semibold uppercase tracking-[0.25em] sm:text-sm ${className ?? ""}`}
+      className={`text-center font-mono text-xs font-semibold uppercase tracking-[0.25em] ${className ?? ""}`}
     >
       {children}
     </p>
@@ -91,15 +109,13 @@ export default function SponsorsSection() {
 
       <div className="relative mx-auto max-w-6xl">
         {/* Encabezado */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-bold text-white sm:text-5xl">
-            Nuestros Sponsors
-          </h2>
-          <p className="mt-3 text-base text-white/60 sm:text-lg">
-            Las marcas que impulsan el futuro digital y la infraestructura de la
-            próxima economía web3.
-          </p>
-        </div>
+        <SectionHeading
+          kicker="Partners"
+          subtitle="Las marcas que impulsan el futuro digital y la infraestructura de la próxima economía web3."
+          className="mx-auto max-w-3xl"
+        >
+          Nuestros Sponsors
+        </SectionHeading>
 
         {/* MAIN SPONSORS */}
         <div className="mt-16">
@@ -110,7 +126,7 @@ export default function SponsorsSection() {
             {MAIN_SPONSORS.map((sponsor) => (
               <div
                 key={sponsor.name}
-                className="group flex w-full flex-col items-center rounded-3xl border border-white/10 bg-[#0d0d0d] p-8 text-center transition-colors duration-300 hover:border-brand-green/50 sm:w-1/2 sm:p-10 lg:w-2/5"
+                className="panel group flex w-full flex-col items-center rounded-3xl p-8 text-center transition-colors duration-300 hover:!border-brand-green/50 sm:w-1/2 sm:p-10 lg:w-2/5"
               >
                 <div className="flex h-24 items-center justify-center">
                   <SponsorLogo sponsor={sponsor} size={96} />
@@ -135,7 +151,7 @@ export default function SponsorsSection() {
             {PLATINUM_SPONSORS.map((sponsor) => (
               <div
                 key={sponsor.name}
-                className="group flex h-32 items-center justify-center rounded-2xl border border-white/10 bg-[#0d0d0d] p-6 transition-colors duration-300 hover:border-brand-violet/50"
+                className="panel group flex h-32 items-center justify-center rounded-2xl p-6 transition-colors duration-300 hover:!border-brand-violet/50"
               >
                 <SponsorLogo sponsor={sponsor} size={72} />
               </div>
@@ -150,7 +166,7 @@ export default function SponsorsSection() {
             {GOLD_SPONSORS.map((sponsor) => (
               <div
                 key={sponsor.name}
-                className="group flex h-24 items-center justify-center rounded-xl border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-300 hover:border-white/30"
+                className="panel group flex h-24 items-center justify-center rounded-xl p-4 transition-colors duration-300 hover:!border-white/30"
               >
                 <SponsorLogo sponsor={sponsor} size={56} />
               </div>
