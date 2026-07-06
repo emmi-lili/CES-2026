@@ -12,6 +12,8 @@ type Point = {
   flag?: string;
   /** Where the tag sits relative to its bullet (default "top"). */
   place?: Placement;
+  /** Extra pixel nudge for fine-tuning crowded tags. */
+  offset?: { x?: number; y?: number };
 };
 
 interface MapProps {
@@ -20,62 +22,40 @@ interface MapProps {
 }
 
 const TAG_TRANSFORM: Record<Placement, string> = {
-  top: "translate(-50%, calc(-100% - 6px))",
-  bottom: "translate(-50%, 6px)",
-  left: "translate(calc(-100% - 6px), -50%)",
-  right: "translate(6px, -50%)",
+  top: "translate(-50%, calc(-100% - 8px))",
+  bottom: "translate(-50%, 8px)",
+  left: "translate(calc(-100% - 10px), -50%)",
+  right: "translate(10px, -50%)",
 };
 
 /**
- * Aceternity "World Map" — a dotted map (via `dotted-map`) with animated curved
- * connection arcs drawn on top with `motion`. Adapted for this dark-only site:
- * transparent background, brand-green arcs, and a flag + name tag on every
- * bullet. The map auto-frames (close-up) to the bounding box of the given
- * points so the countries and their tags have room to breathe.
+ * Aceternity "World Map" — a dotted world map (via `dotted-map`) with animated
+ * curved connection arcs drawn on top with `motion`. Adapted for this dark-only
+ * site: transparent background, brand-green arcs and a flag + name tag on every
+ * bullet.
  */
 export function WorldMap({ dots = [], lineColor = "#3DF07A" }: MapProps) {
-  const { svgMap, width, height, project } = useMemo(() => {
-    const pts = dots.flatMap((d) => [d.start, d.end]);
-    const lats = pts.map((p) => p.lat);
-    const lngs = pts.map((p) => p.lng);
-
-    // Close-up region around the points (with padding). Extra headroom on top
-    // for the tags that sit above the northern bullets.
-    const region = pts.length
-      ? {
-          lat: { min: Math.min(...lats) - 8, max: Math.max(...lats) + 6 },
-          lng: { min: Math.min(...lngs) - 12, max: Math.max(...lngs) + 12 },
-        }
-      : undefined;
-
-    const map = new DottedMap({ height: 60, grid: "diagonal", region });
-    const svg = map.getSVG({
-      radius: 0.28,
+  const svgMap = useMemo(() => {
+    const map = new DottedMap({ height: 100, grid: "diagonal" });
+    return map.getSVG({
+      radius: 0.22,
       color: "#FFFFFF40",
       shape: "circle",
       backgroundColor: "transparent",
     });
+  }, []);
 
-    const vb = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
-    const width = vb ? parseFloat(vb[1]) : 100;
-    const height = vb ? parseFloat(vb[2]) : 60;
-
-    // dotted-map's own (proj4) projection → coordinates in the SVG viewBox.
-    const project = (lat: number, lng: number) => {
-      const pin = map.getPin({ lat, lng });
-      return { x: pin?.x ?? 0, y: pin?.y ?? 0 };
-    };
-
-    return { svgMap: svg, width, height, project };
-  }, [dots]);
+  const projectPoint = (lat: number, lng: number) => ({
+    x: (lng + 180) * (800 / 360),
+    y: (90 - lat) * (400 / 180),
+  });
 
   const createCurvedPath = (
     start: { x: number; y: number },
     end: { x: number; y: number },
   ) => {
-    const dr = Math.hypot(end.x - start.x, end.y - start.y);
     const midX = (start.x + end.x) / 2;
-    const midY = Math.min(start.y, end.y) - dr * 0.2;
+    const midY = Math.min(start.y, end.y) - 50;
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
   };
 
@@ -95,22 +75,18 @@ export function WorldMap({ dots = [], lineColor = "#3DF07A" }: MapProps) {
     return out;
   }, [dots]);
 
-  // Stroke widths / radii are relative to the (small) viewBox.
-  const unit = Math.max(width, height) / 100;
-
   return (
-    <div className="relative w-full font-sans" style={{ aspectRatio: `${width} / ${height}` }}>
+    <div className="relative aspect-[2/1] w-full font-sans">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="pointer-events-none h-full w-full select-none [mask-image:linear-gradient(to_bottom,transparent,white_8%,white_92%,transparent)]"
+        className="pointer-events-none h-full w-full select-none [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
         alt="world map"
         draggable={false}
       />
 
       <svg
-        viewBox={`0 0 ${width} ${height}`}
-        preserveAspectRatio="none"
+        viewBox="0 0 800 400"
         className="pointer-events-none absolute inset-0 h-full w-full select-none"
       >
         <defs>
@@ -123,16 +99,15 @@ export function WorldMap({ dots = [], lineColor = "#3DF07A" }: MapProps) {
         </defs>
 
         {dots.map((dot, i) => {
-          const start = project(dot.start.lat, dot.start.lng);
-          const end = project(dot.end.lat, dot.end.lng);
+          const start = projectPoint(dot.start.lat, dot.start.lng);
+          const end = projectPoint(dot.end.lat, dot.end.lng);
           return (
             <motion.path
               key={`path-${i}`}
               d={createCurvedPath(start, end)}
               fill="none"
               stroke="url(#world-map-line)"
-              strokeWidth={unit * 0.5}
-              strokeLinecap="round"
+              strokeWidth="1"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 1, delay: 0.4 * i, ease: "easeOut" }}
@@ -141,15 +116,15 @@ export function WorldMap({ dots = [], lineColor = "#3DF07A" }: MapProps) {
         })}
 
         {labels.map((p, i) => {
-          const { x, y } = project(p.lat, p.lng);
+          const { x, y } = projectPoint(p.lat, p.lng);
           return (
             <g key={`pin-${i}`}>
-              <circle cx={x} cy={y} r={unit * 1.2} fill={lineColor} />
-              <circle cx={x} cy={y} r={unit * 1.2} fill={lineColor} opacity="0.5">
+              <circle cx={x} cy={y} r="2" fill={lineColor} />
+              <circle cx={x} cy={y} r="2" fill={lineColor} opacity="0.5">
                 <animate
                   attributeName="r"
-                  from={unit * 1.2}
-                  to={unit * 4.5}
+                  from="2"
+                  to="8"
                   dur="1.5s"
                   repeatCount="indefinite"
                 />
@@ -168,19 +143,19 @@ export function WorldMap({ dots = [], lineColor = "#3DF07A" }: MapProps) {
 
       {/* Flag + name tag on every bullet */}
       {labels.map((p, i) => {
-        const { x, y } = project(p.lat, p.lng);
+        const { x, y } = projectPoint(p.lat, p.lng);
         return (
           <div
             key={`label-${i}`}
             className="pointer-events-none absolute z-10"
             style={{
-              left: `${(x / width) * 100}%`,
-              top: `${(y / height) * 100}%`,
-              transform: TAG_TRANSFORM[p.place ?? "top"],
+              left: `${(x / 800) * 100}%`,
+              top: `${(y / 400) * 100}%`,
+              transform: `${TAG_TRANSFORM[p.place ?? "top"]} translate(${p.offset?.x ?? 0}px, ${p.offset?.y ?? 0}px)`,
             }}
           >
-            <span className="flex items-center gap-1 whitespace-nowrap rounded-full border border-brand-green/30 bg-black/85 px-2 py-0.5 text-[11px] font-semibold text-white shadow-[0_2px_10px_rgba(0,0,0,0.6)] backdrop-blur-sm">
-              {p.flag && <span className="leading-none">{p.flag}</span>}
+            <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-brand-green/30 bg-black/85 px-3 py-1 text-sm font-semibold text-white shadow-[0_2px_10px_rgba(0,0,0,0.6)] backdrop-blur-sm">
+              {p.flag && <span className="text-base leading-none">{p.flag}</span>}
               {p.label}
             </span>
           </div>

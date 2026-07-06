@@ -10,14 +10,15 @@ const LA_PAZ = {
   lng: -68.15,
   label: "La Paz",
   flag: "🇧🇴",
-  place: "left" as const,
+  place: "bottom" as const,
+  offset: { x: -28 },
 };
 const MAP_CONNECTIONS = [
-  { start: LA_PAZ, end: { lat: 25.76, lng: -80.19, label: "Estados Unidos", flag: "🇺🇸", place: "top" as const } },
-  { start: LA_PAZ, end: { lat: 40.42, lng: -3.7, label: "Europa", flag: "🇪🇺", place: "top" as const } },
+  { start: LA_PAZ, end: { lat: 25.76, lng: -80.19, label: "Estados Unidos", flag: "🇺🇸" } },
+  { start: LA_PAZ, end: { lat: 40.42, lng: -3.7, label: "Europa", flag: "🇪🇺" } },
   { start: LA_PAZ, end: { lat: 10.48, lng: -66.9, label: "Venezuela", flag: "🇻🇪", place: "right" as const } },
   { start: LA_PAZ, end: { lat: 4.71, lng: -74.07, label: "Colombia", flag: "🇨🇴", place: "left" as const } },
-  { start: LA_PAZ, end: { lat: -25.28, lng: -57.63, label: "Paraguay", flag: "🇵🇾", place: "bottom" as const } },
+  { start: LA_PAZ, end: { lat: -25.28, lng: -57.63, label: "Paraguay", flag: "🇵🇾", place: "bottom" as const, offset: { x: 34 } } },
 ];
 
 /**
@@ -57,7 +58,7 @@ export default function HeroSection() {
           </div>
 
           {/* World map with animated remittance corridors from La Paz */}
-          <div className="mx-auto mt-10 w-full max-w-md">
+          <div className="mt-12 w-full">
             <WorldMap dots={MAP_CONNECTIONS} lineColor="#3DF07A" />
           </div>
         </div>
