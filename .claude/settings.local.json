@@ -37,7 +37,8 @@
       "Bash(curl -s http://localhost:3004/networking)",
       "Bash(pkill -9 -f \"next dev\")",
       "Bash(curl -s -o /dev/null http://localhost:3001/bg-test)",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1200,760 --virtual-time-budget=3500 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/60d983f8-2360-4569-8f4c-19c21463f4c6/scratchpad/bg_desktop2.png http://localhost:3001/bg-test)"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --window-size=1200,760 --virtual-time-budget=3500 --screenshot=/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/60d983f8-2360-4569-8f4c-19c21463f4c6/scratchpad/bg_desktop2.png http://localhost:3001/bg-test)",
+      "Bash(sips -g pixelWidth -g pixelHeight '/Users/emmi/CRYPTO EXPERIENCE SUMMIT /public/CES MERU logo ok.png')"
     ]
   }
 }

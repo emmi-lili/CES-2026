@@ -1,32 +1,20 @@
-import { PersonIcon } from "./icons";
+import Image from "next/image";
 
 /**
- * Top black bar. Centered two-line wordmark with "2026" in brand green and a
- * person icon on the left.
+ * Top black bar with the centered Crypto Experience Summit logo.
  */
 export default function Header() {
   return (
     <header className="relative z-20 bg-black">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
-        <button
-          type="button"
-          aria-label="Cuenta"
-          className="flex h-9 w-9 items-center justify-center rounded-full text-white/90 transition-colors hover:text-white"
-        >
-          <PersonIcon className="h-6 w-6" />
-        </button>
-
-        <div className="select-none text-center leading-tight">
-          <span className="block text-[15px] font-bold tracking-wide text-white">
-            Crypto Experience
-          </span>
-          <span className="block text-[15px] font-bold tracking-wide text-white">
-            Summit <span className="text-brand-green">2026</span>
-          </span>
-        </div>
-
-        {/* Spacer keeps the wordmark centered now that the search icon is gone */}
-        <span aria-hidden className="h-9 w-9" />
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-center px-5">
+        <Image
+          src="/CES MERU logo ok.png"
+          alt="Crypto Experience Summit 2026"
+          width={2756}
+          height={1096}
+          priority
+          className="h-9 w-auto select-none sm:h-10"
+        />
       </div>
     </header>
   );

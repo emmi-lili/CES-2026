@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LinkedInIcon, XIcon } from "./icons";
+import Reveal from "./Reveal";
 
 type Speaker = {
   name: string;
@@ -368,8 +369,9 @@ export default function SpeakersSection() {
       {/* Filas (4, 3, 3, 3) centradas */}
       <div className="mx-auto mt-12 max-w-6xl space-y-6">
         {rows.map((row, idx) => (
-          <div
+          <Reveal
             key={idx}
+            delay={idx * 0.08}
             className="flex flex-wrap justify-center gap-6"
           >
             {row.map((speaker) => (
@@ -380,7 +382,7 @@ export default function SpeakersSection() {
                 <SpeakerCard speaker={speaker} onSelect={setSelected} />
               </div>
             ))}
-          </div>
+          </Reveal>
         ))}
       </div>
 
