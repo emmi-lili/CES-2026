@@ -72,6 +72,9 @@ function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: 
 export default function QuickAccessSection() {
   return (
     <section className="bg-black px-4 py-12">
+      <h2 className="mb-10 px-5 text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        Todo en un solo lugar
+      </h2>
       <div className="mx-auto grid max-w-3xl grid-cols-3 gap-3 sm:gap-6">
         {ITEMS.map((item) => (
           <QuickAccessCard key={item.title} {...item} />

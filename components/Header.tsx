@@ -1,8 +1,8 @@
-import { PersonIcon, SearchIcon } from "./icons";
+import { PersonIcon } from "./icons";
 
 /**
- * Top black bar. Centered two-line wordmark with "2026" in brand green,
- * person icon on the left and search icon on the right.
+ * Top black bar. Centered two-line wordmark with "2026" in brand green and a
+ * person icon on the left.
  */
 export default function Header() {
   return (
@@ -25,13 +25,8 @@ export default function Header() {
           </span>
         </div>
 
-        <button
-          type="button"
-          aria-label="Buscar"
-          className="flex h-9 w-9 items-center justify-center rounded-full text-white/90 transition-colors hover:text-white"
-        >
-          <SearchIcon className="h-6 w-6" />
-        </button>
+        {/* Spacer keeps the wordmark centered now that the search icon is gone */}
+        <span aria-hidden className="h-9 w-9" />
       </div>
     </header>
   );

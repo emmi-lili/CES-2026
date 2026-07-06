@@ -22,6 +22,11 @@ const LOGOS: Logo[] = [
 export default function SponsorsMarquee() {
   return (
     <section className="relative w-full overflow-hidden bg-black py-12">
+      {/* Título */}
+      <h2 className="mb-10 px-5 text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        Nuestros Sponsors
+      </h2>
+
       {/* Degradados en los extremos: aparición/desaparición suave */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-black to-transparent sm:w-32" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-black to-transparent sm:w-32" />
