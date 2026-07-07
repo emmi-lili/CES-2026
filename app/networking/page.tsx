@@ -1,11 +1,5 @@
-import AttendeesSection from "@/components/AttendeesSection";
-import NavBar from "@/components/NavBar";
+import NetworkingGate from "@/components/networking/NetworkingGate";
 
 export default function NetworkingPage() {
-  return (
-    <main className="min-h-screen bg-black">
-      <NavBar />
-      <AttendeesSection />
-    </main>
-  );
+  return <NetworkingGate />;
 }

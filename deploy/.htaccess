@@ -1,0 +1,32 @@
+# Crypto Experience Summit — static site + PHP API
+# Upload this file to the web root alongside index.html, api/, and uploads/.
+
+DirectoryIndex index.html index.php
+
+Options -Indexes
+
+# Serve existing files and directories directly (static export)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Allow API and uploads to pass through
+  RewriteRule ^api/ - [L]
+  RewriteRule ^uploads/ - [L]
+
+  # Trailing slash routes for static export folders
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.+[^/])$ /$1/ [R=301,L]
+
+  # Map /networking/ -> /networking/index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1/index.html [L]
+</IfModule>
+
+# Security headers (optional, if mod_headers is available)
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

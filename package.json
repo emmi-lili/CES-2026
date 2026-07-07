@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
+    "prepare-deploy": "node scripts/prepare-deploy.mjs",
+    "deploy:bundle": "npm run build && npm run prepare-deploy",
     "start": "next start",
     "lint": "next lint",
     "kill": "pkill -9 -f next-server || true",

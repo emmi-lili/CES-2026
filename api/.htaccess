@@ -1,0 +1,12 @@
+# Block direct access to config files
+<Files "config.php">
+  Require all denied
+</Files>
+
+<Files "config.example.php">
+  Require all denied
+</Files>
+
+<Files "helpers.php">
+  Require all denied
+</Files>
