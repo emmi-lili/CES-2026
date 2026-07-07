@@ -26,7 +26,7 @@ export default function EventCard({
   month = "julio",
 }: EventCardProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       {/* Polished glass plate */}
       <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/[0.16] via-white/[0.05] to-white/[0.02] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_16px_40px_-16px_rgba(0,0,0,0.85)] backdrop-blur-md">
         {/* Top glare reflection */}

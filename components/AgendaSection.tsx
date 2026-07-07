@@ -28,7 +28,7 @@ const PX_PER_MIN = 2.1;
 /** Left gutter reserved for the hour labels. */
 const GUTTER = 54;
 
-type Category = "charla" | "panel" | "workshop" | "networking" | "break";
+type Category = "charla" | "panel" | "networking" | "break";
 
 type Session = {
   start: string;
@@ -123,9 +123,9 @@ const AGENDAS: Agenda[] = [
     sessions: [
       { start: "08:30", end: "09:30", title: "Registro & networking matutino", category: "networking", note: "Bienvenida del equipo CES" },
       { start: "09:30", end: "10:30", title: "Keynote: Adopción cripto en Bolivia", category: "charla", tbc: true },
-      { start: "11:00", end: "12:00", title: "Workshop: Stablecoins para remesas", category: "workshop", tbc: true },
+      { start: "11:00", end: "12:00", title: "Workshop: Stablecoins para remesas", category: "charla", tbc: true },
       { start: "12:30", end: "13:30", title: "Panel: Bancos tradicionales y Web3", category: "panel", tbc: true },
-      { start: "15:00", end: "16:00", title: "Workshop: Trading on-chain seguro", category: "workshop", tbc: true },
+      { start: "15:00", end: "16:00", title: "Workshop: Trading on-chain seguro", category: "charla", tbc: true },
       { start: "16:30", end: "17:30", title: "Fireside: El futuro del dinero en LATAM", category: "charla", tbc: true },
       { start: "19:30", end: "21:30", title: "Networking & Cóctel de cierre", category: "networking", note: "DJ en vivo · Rooftop" },
     ],
@@ -156,14 +156,6 @@ const CATEGORY: Record<
     border: "border-l-violet-400",
     chip: "bg-violet-500/15 text-violet-200",
   },
-  workshop: {
-    label: "Workshop",
-    dot: "bg-amber-400",
-    text: "text-amber-300",
-    fill: "bg-amber-500/[0.09]",
-    border: "border-l-amber-400",
-    chip: "bg-amber-500/15 text-amber-200",
-  },
   networking: {
     label: "Networking",
     dot: "bg-teal-400",
@@ -173,7 +165,7 @@ const CATEGORY: Record<
     chip: "bg-teal-500/15 text-teal-200",
   },
   break: {
-    label: "Descanso",
+    label: "Coffee break",
     dot: "bg-white/30",
     text: "text-white/45",
     fill: "bg-white/[0.03]",
@@ -475,6 +467,141 @@ function Timeline({
 }
 
 /* -------------------------------------------------------------------------- */
+/*  List view                                                                 */
+/* -------------------------------------------------------------------------- */
+
+function SessionRow({
+  session,
+  saved,
+  onToggle,
+  isNow,
+}: {
+  session: Session;
+  saved: boolean;
+  onToggle: () => void;
+  isNow: boolean;
+}) {
+  const c = CATEGORY[session.category];
+  const canSave = session.category !== "break";
+  const muted = session.category === "break";
+
+  return (
+    <div className="group flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-white/[0.025]">
+      <div className="w-14 shrink-0 text-right">
+        <p
+          className={`font-mono text-sm tabular-nums ${
+            isNow ? "text-red-400" : muted ? "text-white/40" : "text-white/80"
+          }`}
+        >
+          {session.start}
+        </p>
+        <p className="font-mono text-[11px] tabular-nums text-white/30">
+          {session.end}
+        </p>
+      </div>
+
+      <span
+        className={`size-2.5 shrink-0 rounded-full ${
+          isNow ? "bg-red-500" : c.dot
+        }`}
+      />
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline gap-2">
+          <h3
+            className={`truncate text-sm font-semibold ${
+              muted ? "text-white/55" : "text-white"
+            }`}
+          >
+            {session.title}
+          </h3>
+          <span className="hidden shrink-0 text-[10px] uppercase tracking-wider text-white/30 sm:inline">
+            {isNow ? "Ahora" : c.label}
+          </span>
+        </div>
+        {(session.org || session.country || session.tbc || session.note) && (
+          <p className="mt-0.5 truncate text-xs text-white/45">
+            {session.tbc
+              ? "Ponente por confirmar"
+              : session.note
+                ? session.note
+                : [session.org, session.country].filter(Boolean).join(" · ")}
+          </p>
+        )}
+      </div>
+
+      {canSave && (
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-pressed={saved}
+          aria-label={saved ? "Quitar de mi agenda" : "Agendar esta charla"}
+          className={`flex size-7 shrink-0 items-center justify-center rounded-full border transition-colors ${
+            saved
+              ? "border-white bg-white text-black"
+              : "border-white/15 text-white/40 hover:border-white/50 hover:text-white"
+          }`}
+        >
+          {saved ? <CheckIcon className="size-4" /> : <PlusIcon className="size-4" />}
+        </button>
+      )}
+    </div>
+  );
+}
+
+const PERIODS: { label: string; from: number; to: number }[] = [
+  { label: "Mañana", from: 0, to: 720 },
+  { label: "Tarde", from: 720, to: 1080 },
+  { label: "Noche", from: 1080, to: 1440 },
+];
+
+function AgendaListView({
+  agenda,
+  sessions,
+  isSaved,
+  onToggle,
+}: {
+  agenda: Agenda;
+  sessions: Session[];
+  isSaved: (s: Session) => boolean;
+  onToggle: (s: Session) => void;
+}) {
+  const now = nowForDate(agenda.date);
+  const nowId =
+    now === null
+      ? null
+      : sessions.find((s) => now >= t(s.start) && now < t(s.end)) ?? null;
+
+  const groups = PERIODS.map((p) => ({
+    label: p.label,
+    items: sessions.filter((s) => t(s.start) >= p.from && t(s.start) < p.to),
+  })).filter((g) => g.items.length > 0);
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#141416]">
+      {groups.map((group) => (
+        <section key={group.label}>
+          <h4 className="border-b border-white/[0.06] bg-white/[0.015] px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-white/35">
+            {group.label}
+          </h4>
+          <div className="divide-y divide-white/[0.05]">
+            {group.items.map((session) => (
+              <SessionRow
+                key={sid(agenda.id, session)}
+                session={session}
+                saved={isSaved(session)}
+                onToggle={() => onToggle(session)}
+                isNow={nowId === session}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Sidebar: Mi Agenda                                                        */
 /* -------------------------------------------------------------------------- */
 
@@ -634,7 +761,6 @@ function SummaryCard({ sessions }: { sessions: Session[] }) {
     [
       { cat: "charla", value: count("charla") },
       { cat: "panel", value: count("panel") },
-      { cat: "workshop", value: count("workshop") },
       { cat: "networking", value: count("networking") },
     ] as { cat: Category; value: number }[]
   ).filter((r) => r.value > 0);
@@ -664,7 +790,7 @@ function SummaryCard({ sessions }: { sessions: Session[] }) {
 /* -------------------------------------------------------------------------- */
 
 function Legend() {
-  const cats: Category[] = ["charla", "panel", "workshop", "networking", "break"];
+  const cats: Category[] = ["charla", "panel", "networking", "break"];
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
       {cats.map((cat) => (
@@ -686,6 +812,7 @@ const STORAGE_KEY = "ces-2026-mi-agenda";
 export default function AgendaSection() {
   const [activeId, setActiveId] = useState(AGENDAS[0].id);
   const [view, setView] = useState<"all" | "mine">("all");
+  const [layout, setLayout] = useState<"timeline" | "list">("list");
   const [saved, setSaved] = useState<Set<string>>(new Set());
   const [mounted, setMounted] = useState(false);
 
@@ -802,33 +929,56 @@ export default function AgendaSection() {
           </span>
         </header>
 
-        {/* Controls: legend + view toggle */}
+        {/* Controls: legend + toggles */}
         <div className="mt-8 flex flex-col gap-4 border-t border-white/[0.06] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <Legend />
-          <div className="inline-flex rounded-full border border-white/10 bg-surface-card p-1 text-sm">
-            <button
-              type="button"
-              onClick={() => setView("all")}
-              className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
-                view === "all" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
-              }`}
-            >
-              Todas
-            </button>
-            <button
-              type="button"
-              onClick={() => setView("mine")}
-              className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
-                view === "mine" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
-              }`}
-            >
-              Mi agenda
-              {savedItems.length > 0 && (
-                <span className="ml-1.5 font-mono text-xs text-brand-green">
-                  {savedItems.length}
-                </span>
-              )}
-            </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex rounded-full border border-white/10 bg-surface-card p-1 text-sm">
+              <button
+                type="button"
+                onClick={() => setView("all")}
+                className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
+                  view === "all" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                }`}
+              >
+                Todas
+              </button>
+              <button
+                type="button"
+                onClick={() => setView("mine")}
+                className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
+                  view === "mine" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                }`}
+              >
+                Mi agenda
+                {savedItems.length > 0 && (
+                  <span className="ml-1.5 font-mono text-xs text-brand-green">
+                    {savedItems.length}
+                  </span>
+                )}
+              </button>
+            </div>
+
+            <div className="inline-flex rounded-full border border-white/10 bg-surface-card p-1 text-sm">
+              <button
+                type="button"
+                onClick={() => setLayout("list")}
+                className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
+                  layout === "list" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                }`}
+              >
+                Lista
+              </button>
+              <button
+                type="button"
+                onClick={() => setLayout("timeline")}
+                className={`rounded-full px-4 py-1.5 font-semibold transition-colors ${
+                  layout === "timeline" ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                }`}
+              >
+                Timeline
+              </button>
+            </div>
           </div>
         </div>
 
@@ -836,12 +986,22 @@ export default function AgendaSection() {
         <div className="mt-8 flex flex-col gap-8 lg:flex-row">
           <div className="lg:w-[68%]">
             {visibleSessions.length > 0 ? (
-              <Timeline
-                agenda={agenda}
-                sessions={visibleSessions}
-                isSaved={isSaved}
-                onToggle={toggle}
-              />
+              layout === "list" ? (
+                <AgendaListView
+                  key={`${agenda.id}-${view}`}
+                  agenda={agenda}
+                  sessions={visibleSessions}
+                  isSaved={isSaved}
+                  onToggle={toggle}
+                />
+              ) : (
+                <Timeline
+                  agenda={agenda}
+                  sessions={visibleSessions}
+                  isSaved={isSaved}
+                  onToggle={toggle}
+                />
+              )
             ) : (
               <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#141416] px-6 py-20 text-center">
                 <div className="flex size-12 items-center justify-center rounded-full border border-white/15 text-white/40">

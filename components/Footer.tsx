@@ -27,8 +27,12 @@ export default function Footer() {
         className="h-20 w-20 object-contain"
       />
 
-      <div className="flex items-center gap-4">
-        {SOCIALS.map(({ label, href, Icon }) => (
+      <div className="flex flex-col items-center gap-4 sm:flex-row">
+        <span className="text-sm font-medium text-white/70">
+          Síguenos en nuestras redes
+        </span>
+        <div className="flex items-center gap-4">
+          {SOCIALS.map(({ label, href, Icon }) => (
           <a
             key={label}
             href={href}
@@ -39,7 +43,8 @@ export default function Footer() {
           >
             <Icon className="size-5" />
           </a>
-        ))}
+          ))}
+        </div>
       </div>
     </footer>
   );

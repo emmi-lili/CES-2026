@@ -9,39 +9,38 @@ type QuickAccessItem = {
   iconSize: number;
   title: string;
   description: string;
+  /** External URL opened in a new tab when the card is clicked. */
+  href: string;
   /** Extra sizing for the badge-style asset (TodoTix is wider visually). */
   iconClassName?: string;
 };
 
 const ITEMS: QuickAccessItem[] = [
   {
-    icon: "/Alert.png",
-    iconSize: 166,
-    title: "Actividades",
-    description: "Nuestro cronograma de eventos, horarios, etc.",
+    icon: "/ticket-lpz.png",
+    iconSize: 1024,
+    title: "Tickets La Paz",
+    description:
+      "Reserva tu lugar para el evento del 28 de julio en La Paz — Hotel Casa Grande.",
+    href: "https://todotix.com/ticket/cryptolp",
   },
   {
-    icon: "/Mi-ticket.png",
-    iconSize: 176,
-    title: "Mi Ticket",
+    icon: "/ticket-scz.png",
+    iconSize: 1024,
+    title: "Ticket Santa Cruz",
     description:
-      "Reserva ya tu lugar en nuestro evento y sé el primero/a en entrar y ver el futuro digital.",
-  },
-  {
-    icon: "/TodoTix.png",
-    iconSize: 227,
-    title: "Todo Tix",
-    description:
-      "Reserva ya tu lugar en nuestro evento y sé el primero/a en entrar y ver el futuro digital.",
-    iconClassName: "h-16 w-24 sm:h-20 sm:w-32",
+      "Reserva tu lugar para el evento del 30 de julio en Santa Cruz — Hotel Marriott.",
+    href: "https://todotix.com/ticket/cryptosc",
   },
 ];
 
 /** A single glassy quick-access card. */
-function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: QuickAccessItem) {
+function QuickAccessCard({ icon, iconSize, title, description, href, iconClassName }: QuickAccessItem) {
   return (
-    <button
-      type="button"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="panel group flex min-h-[280px] cursor-pointer flex-col items-center justify-center gap-4 rounded-[24px] px-3 py-6 text-center shadow-[0_18px_40px_-20px_rgba(0,0,0,0.9)] transition-all duration-300 hover:scale-[1.03] hover:!border-brand-green/40 sm:px-5"
     >
       {/* Icon / badge */}
@@ -63,7 +62,7 @@ function QuickAccessCard({ icon, iconSize, title, description, iconClassName }: 
           {description}
         </p>
       </div>
-    </button>
+    </a>
   );
 }
 
@@ -77,7 +76,7 @@ export default function QuickAccessSection() {
       <SectionHeading kicker="Explora" className="mb-10 px-5">
         Todo en un solo lugar
       </SectionHeading>
-      <div className="mx-auto grid max-w-3xl grid-cols-3 gap-3 sm:gap-6">
+      <div className="mx-auto grid max-w-2xl grid-cols-2 gap-4 sm:gap-6">
         {ITEMS.map((item) => (
           <QuickAccessCard key={item.title} {...item} />
         ))}
