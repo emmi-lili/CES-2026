@@ -44,7 +44,7 @@ export default function NavBar() {
   const right = NAV_ITEMS.slice(2);
 
   return (
-    <nav className="relative z-20 border-b border-white/5 bg-surface-nav/90 backdrop-blur-sm">
+    <nav className="relative z-20 border-b border-white/5 bg-black">
       <div className="mx-auto flex max-w-5xl flex-nowrap items-center justify-center gap-2.5 px-3 py-2.5 text-[11px] font-medium sm:gap-8 sm:px-5 sm:py-3 sm:text-[13px]">
         {left.map((item) => (
           <NavLink
@@ -57,7 +57,7 @@ export default function NavBar() {
         <Link
           href="/"
           aria-label="Inicio"
-          className="mx-1 shrink-0 sm:mx-3"
+          className="mx-1 shrink-0 sm:mx-4"
         >
           <Image
             src="/CES MERU logo ok.png"
@@ -65,7 +65,7 @@ export default function NavBar() {
             width={2756}
             height={1096}
             priority
-            className="h-7 w-auto select-none sm:h-9"
+            className="h-9 w-auto select-none sm:h-14"
           />
         </Link>
 

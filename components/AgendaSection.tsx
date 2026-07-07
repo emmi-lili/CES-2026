@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import {
   BellIcon,
-  CalendarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   ClockIcon,
@@ -28,13 +27,13 @@ const fmt = (min: number) =>
   `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
 
 /** Vertical density of the timeline. */
-const PX_PER_MIN = 1.8;
+const PX_PER_MIN = 2.6;
 
-type Accent = "green" | "violet";
+type Accent = "green" | "violet" | "amber";
 
 type Speaker = {
   name: string;
-  role: string;
+  role?: string;
   initials: string;
   /** tailwind gradient classes for the avatar. */
   avatar: string;
@@ -44,9 +43,14 @@ type Session = {
   start: string;
   end: string;
   title: string;
-  stage: string;
+  /** Small badge (country / format). Optional. */
+  stage?: string;
   accent: Accent;
   speaker?: Speaker;
+  /** Extra muted line, e.g. panel participants. */
+  note?: string;
+  /** Break card (coffee / lunch) — neutral styling, no speaker. */
+  isBreak?: boolean;
   /** Networking-style card: translucent green gradient + themed icons. */
   networking?: boolean;
 };
@@ -79,100 +83,284 @@ const AGENDAS: Agenda[] = [
     venue: "LA PAZ · CASAGRANDE",
     subtitle:
       "Un día enfocado en el futuro de la privacidad, stablecoins y la nueva economía on-chain.",
-    now: t("10:45"),
+    now: null,
     capacity: 85,
     calendarDay: 28,
     sessions: [
       {
-        start: "08:00",
+        start: "08:30",
         end: "09:00",
-        title: "Registro y café de bienvenida",
-        stage: "LOBBY",
+        title: "Apertura",
+        stage: "CES",
         accent: "green",
         speaker: {
-          name: "Equipo CES",
-          role: "Bienvenida",
-          initials: "CE",
+          name: "Crypto Experience Summit",
+          initials: "CES",
           avatar: "from-emerald-400 to-brand-green",
         },
       },
       {
         start: "09:00",
-        end: "10:00",
-        title: "Keynote: El futuro digital ya comenzó",
-        stage: "MAIN STAGE",
+        end: "09:30",
+        title: "Carlos Neira",
+        stage: "Colombia",
         accent: "green",
         speaker: {
-          name: "Mateo Rivera",
-          role: "Founder MERU",
-          initials: "MR",
+          name: "Meru",
+          initials: "CN",
           avatar: "from-emerald-400 to-teal-500",
         },
       },
       {
-        start: "10:30",
-        end: "11:30",
-        title: "Workshop: Construyendo en Web3",
-        stage: "WORKSHOP A",
-        accent: "violet",
-        speaker: {
-          name: "Sofía Herrera",
-          role: "Lead Dev · Aleph",
-          initials: "SH",
-          avatar: "from-violet-400 to-brand-violet",
-        },
-      },
-      {
-        start: "12:00",
-        end: "13:00",
-        title: "Panel: Regulación y stablecoins en LATAM",
-        stage: "MAIN STAGE",
+        start: "09:30",
+        end: "10:00",
+        title: "Jorge Eguino",
+        stage: "Bolivia",
         accent: "green",
         speaker: {
-          name: "Ana Torres",
-          role: "Policy Lead · Rain",
-          initials: "AT",
+          name: "Rain",
+          initials: "JE",
           avatar: "from-lime-400 to-brand-green",
         },
       },
       {
-        start: "14:30",
-        end: "15:30",
-        title: "Workshop B: Seguridad on-chain",
-        stage: "WORKSHOP B",
-        accent: "violet",
-        speaker: {
-          name: "Diego Núñez",
-          role: "Security · BitGo",
-          initials: "DN",
-          avatar: "from-purple-400 to-brand-violet",
-        },
-      },
-      {
-        start: "16:00",
-        end: "17:00",
-        title: "Fireside: Escalando fintech en LATAM",
-        stage: "MAIN STAGE",
+        start: "10:00",
+        end: "10:30",
+        title: "Juan Carlos Reyes",
+        stage: "El Salvador",
         accent: "green",
         speaker: {
-          name: "Valentina Cruz",
-          role: "CEO · Kravata",
-          initials: "VC",
+          name: "CNAD",
+          initials: "JR",
           avatar: "from-emerald-400 to-green-500",
         },
       },
       {
-        start: "19:00",
-        end: "21:00",
-        title: "Networking & Cóctel de cierre",
-        stage: "ROOFTOP",
+        start: "10:30",
+        end: "11:00",
+        title: "Andrés Kim",
+        stage: "Venezuela",
         accent: "green",
-        networking: true,
         speaker: {
-          name: "Todos los asistentes",
-          role: "Música en vivo",
-          initials: "★",
-          avatar: "from-emerald-400 to-brand-green",
+          name: "Tether",
+          initials: "AK",
+          avatar: "from-teal-400 to-brand-green",
+        },
+      },
+      {
+        start: "11:00",
+        end: "11:30",
+        title: "Mario Patiño",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "BCP",
+          initials: "MP",
+          avatar: "from-emerald-400 to-teal-500",
+        },
+      },
+      {
+        start: "11:30",
+        end: "12:00",
+        title: "Conversatorio Toyosa · Crown",
+        stage: "Conversatorio",
+        accent: "violet",
+        note: "Edwin Saavedra, Andrés Kim, Álvaro Olivares",
+      },
+      {
+        start: "12:00",
+        end: "12:30",
+        title: "Coffee Break",
+        stage: "30 min",
+        accent: "amber",
+        isBreak: true,
+      },
+      {
+        start: "12:30",
+        end: "13:00",
+        title: "Emmi Aguilar",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Capa Zero",
+          initials: "EA",
+          avatar: "from-lime-400 to-brand-green",
+        },
+      },
+      {
+        start: "13:00",
+        end: "13:30",
+        title: "Kublai Gómez",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Prisma Solutions",
+          initials: "KG",
+          avatar: "from-emerald-400 to-green-500",
+        },
+      },
+      {
+        start: "13:30",
+        end: "14:00",
+        title: "Patricia Tudisco",
+        stage: "Uruguay",
+        accent: "green",
+        speaker: {
+          name: "Banco Central del Uruguay",
+          initials: "PT",
+          avatar: "from-teal-400 to-brand-green",
+        },
+      },
+      {
+        start: "14:00",
+        end: "14:30",
+        title: "Fernando Arriola",
+        stage: "Paraguay",
+        accent: "green",
+        speaker: {
+          name: "Paraguay Blockchain Summit",
+          initials: "FA",
+          avatar: "from-emerald-400 to-teal-500",
+        },
+      },
+      {
+        start: "14:30",
+        end: "15:00",
+        title: "Panel: Regulación de Activos Digitales",
+        stage: "Panel",
+        accent: "violet",
+        note: "Fernanda Juppet, Juan Carlos Reyes, Patricia Tudisco, ASFI",
+      },
+      {
+        start: "15:00",
+        end: "16:00",
+        title: "Almuerzo",
+        stage: "1 h",
+        accent: "amber",
+        isBreak: true,
+      },
+      {
+        start: "16:00",
+        end: "16:30",
+        title: "Kublai Gómez",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Prisma Solutions",
+          initials: "KG",
+          avatar: "from-emerald-400 to-green-500",
+        },
+      },
+      {
+        start: "16:30",
+        end: "17:00",
+        title: "Martín Iturri",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Iturri & Asociados",
+          initials: "MI",
+          avatar: "from-lime-400 to-brand-green",
+        },
+      },
+      {
+        start: "17:00",
+        end: "17:30",
+        title: "Charla por confirmar",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Cristal",
+          initials: "C",
+          avatar: "from-teal-400 to-brand-green",
+        },
+      },
+      {
+        start: "17:30",
+        end: "18:00",
+        title: "Fernanda Juppet",
+        stage: "Chile",
+        accent: "green",
+        speaker: {
+          name: "Digital Assets Institute",
+          initials: "FJ",
+          avatar: "from-emerald-400 to-green-500",
+        },
+      },
+      {
+        start: "18:00",
+        end: "18:30",
+        title: "Gonzalo Garrido",
+        stage: "España",
+        accent: "green",
+        speaker: {
+          name: "Onchain School",
+          initials: "GG",
+          avatar: "from-teal-400 to-brand-green",
+        },
+      },
+      {
+        start: "18:30",
+        end: "19:00",
+        title: "Coffee Break",
+        stage: "30 min",
+        accent: "amber",
+        isBreak: true,
+      },
+      {
+        start: "19:00",
+        end: "19:30",
+        title: "Panel: Tokenización",
+        stage: "Panel",
+        accent: "violet",
+        note: "Modera: Jorge Alberto Cerda",
+      },
+      {
+        start: "19:30",
+        end: "20:00",
+        title: "Jorge Alberto Cerda",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Veridex Alethia",
+          initials: "JC",
+          avatar: "from-emerald-400 to-teal-500",
+        },
+      },
+      {
+        start: "20:00",
+        end: "20:30",
+        title: "Carlos Fernández Massi",
+        stage: "Suiza",
+        accent: "green",
+        speaker: {
+          name: "Finka Token",
+          initials: "CF",
+          avatar: "from-lime-400 to-brand-green",
+        },
+      },
+      {
+        start: "20:30",
+        end: "21:00",
+        title: "Carlos Olivera",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Identity Me",
+          initials: "CO",
+          avatar: "from-emerald-400 to-green-500",
+        },
+      },
+      {
+        start: "21:00",
+        end: "21:30",
+        title: "Brissia Benavente",
+        stage: "Bolivia",
+        accent: "green",
+        speaker: {
+          name: "Ciudata.io",
+          initials: "BB",
+          avatar: "from-teal-400 to-brand-green",
         },
       },
     ],
@@ -308,6 +496,10 @@ const ACCENT: Record<Accent, { bar: string; badge: string }> = {
     bar: "bg-brand-violet",
     badge: "border-brand-violet/40 bg-brand-violet/15 text-violet-300",
   },
+  amber: {
+    bar: "bg-amber-400/80",
+    badge: "border-amber-400/30 bg-amber-400/10 text-amber-300",
+  },
 };
 
 function SessionCard({
@@ -330,7 +522,9 @@ function SessionCard({
         "absolute left-[60px] right-0 overflow-hidden rounded-2xl border p-4 transition-colors",
         session.networking
           ? "border-brand-green/30 bg-gradient-to-br from-brand-green/20 via-brand-green/5 to-transparent"
-          : "border-white/8 bg-surface-card hover:border-white/15",
+          : session.isBreak
+            ? "border-amber-400/15 bg-amber-400/[0.04]"
+            : "border-white/8 bg-surface-card hover:border-white/15",
         isNow &&
           "border-brand-violet/60 shadow-[0_0_30px_-6px_rgba(139,92,246,0.6)]",
       ]
@@ -347,17 +541,19 @@ function SessionCard({
       />
 
       {/* Stage / format badge */}
-      <span
-        className={`absolute right-3 top-3 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
-          session.networking
-            ? "border-brand-green/30 bg-black/40 text-brand-green"
-            : accent.badge
-        }`}
-      >
-        {session.stage}
-      </span>
+      {session.stage && (
+        <span
+          className={`absolute right-3 top-3 rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
+            session.networking
+              ? "border-brand-green/30 bg-black/40 text-brand-green"
+              : accent.badge
+          }`}
+        >
+          {session.stage}
+        </span>
+      )}
 
-      <div className="pl-2 pr-20">
+      <div className={session.stage ? "pl-2 pr-24" : "pl-2 pr-3"}>
         {isNow && (
           <span className="mb-1 flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-brand-violet">
             <span className="relative flex size-2">
@@ -370,7 +566,11 @@ function SessionCard({
 
         <h3
           className={`text-sm font-semibold leading-snug ${
-            session.networking ? "text-brand-green" : "text-white"
+            session.networking
+              ? "text-brand-green"
+              : session.isBreak
+                ? "text-amber-200/90"
+                : "text-white"
           }`}
         >
           {session.title}
@@ -382,10 +582,16 @@ function SessionCard({
             <p className="min-w-0 truncate text-xs text-white/60">
               <span className="font-medium text-white/80">
                 {session.speaker.name}
-              </span>{" "}
-              · {session.speaker.role}
+              </span>
+              {session.speaker.role ? ` · ${session.speaker.role}` : ""}
             </p>
           </div>
+        )}
+
+        {session.note && (
+          <p className="mt-1.5 text-xs leading-snug text-white/45">
+            {session.note}
+          </p>
         )}
 
         {session.networking && (
@@ -656,10 +862,6 @@ export default function AgendaSection() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface-card px-3 py-1.5 text-xs font-semibold text-white/80">
-              <CalendarIcon className="size-4 text-brand-green" />
-              {agenda.dayLabel}
-            </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface-card px-3 py-1.5 text-xs font-semibold text-white/80">
               <MapPinIcon className="size-4 text-brand-green" />
               {agenda.venue}
