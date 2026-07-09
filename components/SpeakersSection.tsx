@@ -41,6 +41,14 @@ const SPEAKERS: Speaker[] = [
     bio: "Brissia es una nómada digital boliviana y actualmente se desempeña como Head of Growth & Strategy en Ciudata. A lo largo de su trayectoria ha mentorado a más de 100 startups de Bolivia, Latinoamérica y Europa, acompañándolas en el diseño de estrategias para acelerar su crecimiento.\n\nSu propósito es formar a la siguiente generación de líderes capaces de construir soluciones con impacto. A través de LinkedIn divulga contenido sobre nuevas tecnologías, inteligencia artificial, el futuro del trabajo, Business Science y el estilo de vida de los nómadas digitales, inspirando profesionales a prepararse para una economía cada vez más global, descentralizada y digital.",
   },
   {
+    name: "Carlos H. Fernandez Mazzi",
+    role: "CEO\nFINKA TOKEN",
+    photo: "/Carlos H. Fernandez Mazzi.png",
+    linkedin: "https://www.linkedin.com/in/carlosfernandezmazzi/",
+    objectPosition: "center top",
+    bio: "Carlos Fernandez Mazzi aporta más de 35 años de experiencia en negocios internacionales, banca de inversión e inversión de impacto.\n\nEs socio fundador de Finka GmbH, la empresa detrás de Finka Token, el primer instrumento suizo de reparto de ingresos basado en blockchain respaldado por activos tangibles en Bolivia.",
+  },
+  {
     name: "Carlos Neira",
     role: "CFO\nMERU",
     photo: "/CN.png",
@@ -63,7 +71,7 @@ const SPEAKERS: Speaker[] = [
   },
   {
     name: "Emilia Aguilar",
-    role: "CEO\nCAPA ZERO",
+    role: "CEO\nFORTGATE",
     photo: "/EA.png",
     linkedin: "https://www.linkedin.com/in/emmi-aguilar-rivero/",
     objectPosition: "center top",
@@ -171,10 +179,11 @@ function SpeakerCard({
   onSelect: (speaker: Speaker) => void;
 }) {
   const { name, role, photo, linkedin, objectPosition } = speaker;
+  const { title, company } = parseRole(role);
   return (
     <article
       onClick={() => onSelect(speaker)}
-      className="group cursor-pointer rounded-2xl border border-brand-green/50 bg-white/5 p-3 shadow-[0_0_25px_-2px_rgba(61,240,122,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-green"
+      className="group flex h-full cursor-pointer flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/60 hover:bg-white/[0.05] hover:shadow-[0_14px_40px_-12px_rgba(61,240,122,0.45)]"
     >
       {/* Photo */}
       <div className="relative aspect-square overflow-hidden rounded-xl bg-[#4b5563]">
@@ -183,25 +192,51 @@ function SpeakerCard({
           alt={name}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
           style={{ objectPosition: objectPosition ?? "center" }}
         />
+        {/* Overlay "Ver perfil" al pasar el cursor */}
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="m-3 inline-flex items-center gap-1 rounded-full bg-brand-green px-3 py-1 text-xs font-semibold text-black">
+            Ver perfil
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.4}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3 w-3"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </span>
+        </div>
       </div>
 
       {/* Info */}
-      <div className="mt-3">
+      <div className="mt-3 flex flex-1 flex-col">
         <h3 className="text-base font-bold text-white sm:text-lg">{name}</h3>
-        <p className="whitespace-pre-line text-sm text-white/60">{role}</p>
+        <p className="mt-0.5 whitespace-pre-line text-sm leading-snug text-white/55">
+          {title}
+          {company ? (
+            <>
+              {"\n"}
+              <span className="font-bold text-white/85">{company}</span>
+            </>
+          ) : null}
+        </p>
 
-        {/* Social links */}
-        <div className="mt-3 flex items-center gap-3">
+        {/* Social links pinned to bottom */}
+        <div className="mt-auto flex items-center gap-3 pt-3">
           <a
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`LinkedIn de ${name}`}
             onClick={(e) => e.stopPropagation()}
-            className="text-white/40 transition-colors hover:text-white"
+            className="text-white/40 transition-colors hover:text-brand-green"
           >
             <LinkedInIcon className="h-4 w-4" />
           </a>
@@ -350,26 +385,41 @@ function SpeakerModal({
   );
 }
 
-/** Cantidad de speakers por fila (de arriba hacia abajo). */
-const ROW_SIZES = [4, 4, 3, 3];
+/**
+ * Reparte `n` speakers en filas de 4 y 3, priorizando filas de 4 y evitando
+ * filas sueltas de 1 o 2 (p. ej. 18 -> [4,4,4,3,3], 14 -> [4,4,3,3]).
+ */
+function computeRowSizes(n: number): number[] {
+  if (n <= 4) return n > 0 ? [n] : [];
 
-/** Divide la lista de speakers en filas según ROW_SIZES. */
+  const fours = Math.floor(n / 4);
+  const remainder = n % 4;
+
+  if (remainder === 0) return Array(fours).fill(4);
+  if (remainder === 3) return [...Array(fours).fill(4), 3];
+  if (remainder === 2 && fours >= 1)
+    return [...Array(fours - 1).fill(4), 3, 3];
+  if (remainder === 1 && fours >= 2)
+    return [...Array(fours - 2).fill(4), 3, 3, 3];
+
+  // Fallback para casos pequeños poco comunes (n = 5).
+  return [...Array(fours).fill(4), remainder];
+}
+
+/** Divide la lista de speakers en filas uniformes de 4 y 3. */
 function chunkSpeakers(speakers: Speaker[]): Speaker[][] {
   const rows: Speaker[][] = [];
   let i = 0;
-  for (const size of ROW_SIZES) {
-    if (i >= speakers.length) break;
+  for (const size of computeRowSizes(speakers.length)) {
     rows.push(speakers.slice(i, i + size));
     i += size;
   }
-  // Cualquier sobrante va en una última fila.
-  if (i < speakers.length) rows.push(speakers.slice(i));
   return rows;
 }
 
 /**
- * "Nuestros Speakers" — speakers en orden alfabético, mostrados en filas
- * de 4, 3, 3 y 3 (centradas), sobre un fondo space-navy.
+ * "Nuestros Speakers" — speakers en orden alfabético, repartidos en filas
+ * uniformes de 4 y 3 (centradas), sobre un fondo space-navy.
  */
 export default function SpeakersSection() {
   const [selected, setSelected] = useState<Speaker | null>(null);
