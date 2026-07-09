@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { label: "Inicio", href: "/" },
   { label: "Agenda", href: "/agenda" },
   { label: "Networking", href: "/networking" },
-  { label: "Sponsors", href: "/sponsors" },
+  { label: "Speakers", href: "/speakers" },
 ] as const;
 
 function NavLink({

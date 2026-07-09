@@ -20,18 +20,16 @@ const MAIN_SPONSORS: Sponsor[] = [
 ];
 
 const PLATINUM_SPONSORS: Sponsor[] = [
-  { name: "Sponsor 1" },
-  { name: "Sponsor 2" },
-  { name: "Sponsor 3" },
+  { name: "BitGo", logo: "/BITGO.png" },
+  { name: "Meru", logo: "/meru.png" },
+  { name: "BCP", logo: "/BCP.png" },
 ];
 
 const GOLD_SPONSORS: Sponsor[] = [
-  { name: "Sponsor 1" },
-  { name: "Sponsor 2" },
-  { name: "Sponsor 3" },
-  { name: "Sponsor 4" },
-  { name: "Sponsor 5" },
-  { name: "Sponsor 6" },
+  { name: "Toyosa" },
+  { name: "Prisma Payments" },
+  { name: "Iturri y Asociados", logo: "/ITURRI.png" },
+  { name: "Rain", logo: "/RAIN.png" },
 ];
 
 /** Logo del sponsor, o su nombre como placeholder si aún no hay imagen. */
@@ -162,7 +160,7 @@ export default function SponsorsSection() {
         {/* GOLD SPONSORS */}
         <div className="mt-16">
           <TierLabel className="text-white/70">Gold Sponsors</TierLabel>
-          <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="mx-auto mt-6 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
             {GOLD_SPONSORS.map((sponsor) => (
               <div
                 key={sponsor.name}

@@ -33,6 +33,14 @@ const SPEAKERS: Speaker[] = [
     bio: "Más de 7 años de experiencia en las industrias de petróleo, energía y tecnologías Web3.\n\nSólido conocimiento del ecosistema blockchain y de sus potenciales aplicaciones en una amplia variedad de sectores e industrias.\n\nCompromiso con la implementación de tecnologías innovadoras para resolver problemas del mundo real y transformar la manera en que operan las empresas y los modelos de negocio.",
   },
   {
+    name: "Brissia Benavente",
+    role: "Head of Growth\nCIUDATTA",
+    photo: "/Brissia Benavente.png",
+    linkedin: "https://www.linkedin.com/in/brissiabenavente/",
+    objectPosition: "center top",
+    bio: "Brissia es una nómada digital boliviana y actualmente se desempeña como Head of Growth & Strategy en Ciudata. A lo largo de su trayectoria ha mentorado a más de 100 startups de Bolivia, Latinoamérica y Europa, acompañándolas en el diseño de estrategias para acelerar su crecimiento.\n\nSu propósito es formar a la siguiente generación de líderes capaces de construir soluciones con impacto. A través de LinkedIn divulga contenido sobre nuevas tecnologías, inteligencia artificial, el futuro del trabajo, Business Science y el estilo de vida de los nómadas digitales, inspirando profesionales a prepararse para una economía cada vez más global, descentralizada y digital.",
+  },
+  {
     name: "Carlos Neira",
     role: "CFO\nMERU",
     photo: "/CN.png",
@@ -44,6 +52,14 @@ const SPEAKERS: Speaker[] = [
     role: "CTO\nPRESTA YA",
     photo: "/CO.png",
     linkedin: "https://www.linkedin.com/in/colivera/",
+  },
+  {
+    name: "Edwin Saavedra",
+    role: "CEO\nKAIZEN MOTORS",
+    photo: "/Edwin Saavedra.png",
+    linkedin: "https://www.linkedin.com/in/edwinsaavedra/",
+    objectPosition: "center top",
+    bio: "En Kaizen Motors, los principios de lean management y la analítica de negocios son el núcleo de nuestro enfoque para impulsar la innovación y la eficiencia. Nuestro equipo, bajo mi liderazgo, está comprometido con implementar mejoras continuas en los procesos, asegurando que cada decisión esté basada en datos y centrada en el cliente. Con una sólida experiencia en implementación de ERP y analítica de posventa, hemos integrado con éxito sistemas avanzados para repuestos, servicio, CRM y finanzas, mejorando significativamente los flujos de trabajo operativos. Adoptando la filosofía Kaizen, buscamos constantemente oportunidades para optimizar el desempeño y entregar un valor excepcional a nuestros clientes.",
   },
   {
     name: "Emilia Aguilar",
@@ -88,6 +104,14 @@ const SPEAKERS: Speaker[] = [
     linkedin: "https://www.linkedin.com/in/jorgejaviereguino/",
     objectPosition: "center top",
     bio: "Jorge Eguino es Business Development & Partnerships en Rain, una plataforma global de infraestructura para pagos y movimiento de dinero con stablecoins que trabaja con más de 200 socios a nivel mundial y procesa miles de millones de dólares en volumen transaccional. Cuenta con vasta experiencia en el ecosistema fintech, liderando iniciativas de crecimiento, alianzas estratégicas y transformación digital en empresas como Flourish Fi y FinConecta. Además, es profesor de tecnologías emergentes en la Universidad de Alcalá. Jorge es licenciado en Economía por la University of Arkansas y posee un Máster en Big Data y Business Analytics por IE University.",
+  },
+  {
+    name: "Kublai Gómez",
+    role: "Cofundador y CTO\nPRISMAPAY",
+    photo: "/Kumblai Gomez.png",
+    linkedin: "https://www.linkedin.com/in/kublai/",
+    objectPosition: "center top",
+    bio: "Kublai Gómez es cofundador y CTO de Prismapay, la primera plataforma boliviana de gestión de tesorería y pagos internacionales de grado institucional, construida sobre infraestructura bancaria y tecnología de activos digitales.\n\nCon más de 25 años de experiencia en ingeniería de software en Estados Unidos, Rusia, España y Suecia, lidera desde Bolivia el desarrollo tecnológico de Prismapay junto a un equipo local de ingenieros.\n\nEs Ingeniero Electrónico, cuenta con un M.S. en Ciberseguridad y certificaciones en SAP, uno de los sistemas ERP empresariales más utilizados a nivel global.",
   },
   {
     name: "Juan Pablo Velasco",
