@@ -440,7 +440,7 @@ export default function SpeakersSection() {
         Nuestros Speakers
       </SectionHeading>
 
-      {/* Filas (4, 3, 3, 3) centradas */}
+      {/* Filas uniformes (4 y 3) centradas, con tarjetas de igual altura */}
       <div className="mx-auto mt-12 max-w-6xl space-y-6">
         {rows.map((row, idx) => (
           <Reveal
