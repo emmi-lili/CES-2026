@@ -21,11 +21,13 @@ const CARDS: FeatureCard[] = [
     image: "/networking2.webp",
     title: "Networking",
     subtitle: "Espacios de conversatorios",
+    href: "/networking",
   },
   {
     image: "/sponsors3.webp",
-    title: "Sponsors",
-    subtitle: "Las marcas más TOP junto a nosotros",
+    title: "Agenda",
+    subtitle: "Programa y horarios del evento",
+    href: "/agenda",
   },
 ];
 

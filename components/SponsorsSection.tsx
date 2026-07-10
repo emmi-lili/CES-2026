@@ -27,7 +27,7 @@ const PLATINUM_SPONSORS: Sponsor[] = [
 
 const GOLD_SPONSORS: Sponsor[] = [
   { name: "Toyosa" },
-  { name: "Prisma Payments" },
+  { name: "Prisma Payments", logo: "/prismapay.webp" },
   { name: "Iturri y Asociados", logo: "/ITURRI.webp" },
   { name: "Rain", logo: "/RAIN.webp" },
 ];

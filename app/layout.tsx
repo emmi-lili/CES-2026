@@ -28,6 +28,18 @@ export const metadata: Metadata = {
   title: "Crypto Experience Summit 2026",
   description:
     "Crypto Experience Summit 2026 — El futuro digital ya comenzó. La Paz y Santa Cruz, julio 2026.",
+  manifest: "/manifest.webmanifest",
+  // Icono usado al añadir el sitio a la pantalla de inicio (iOS + favicon).
+  icons: {
+    icon: "/Salida-Pers3.png",
+    shortcut: "/Salida-Pers3.png",
+    apple: "/Salida-Pers3.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Crypto Summit",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {

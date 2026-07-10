@@ -90,12 +90,11 @@ export default function SpeakersMarquee() {
       {/* Pista duplicada para el loop seamless */}
       <div className="marquee-track flex w-max items-start">
         {[...SPEAKERS, ...SPEAKERS].map((speaker, i) => (
-          <div
+          <SpeakerTile
             key={`${speaker.name}-${i}`}
-            aria-hidden={i >= SPEAKERS.length ? true : undefined}
-          >
-            <SpeakerAvatar speaker={speaker} />
-          </div>
+            speaker={speaker}
+            hidden={i >= SPEAKERS.length}
+          />
         ))}
       </div>
 

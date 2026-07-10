@@ -68,7 +68,7 @@ const AGENDAS: Agenda[] = [
     date: "2026-07-28",
     dateLabel: "28 de Julio",
     dayLabel: "DÍA 1 DE 2",
-    venue: "La Paz · Casagrande",
+    venue: "La Paz · Casa Grande",
     subtitle:
       "Un día enfocado en el futuro de la privacidad, stablecoins y la nueva economía on-chain.",
     sessions: [
