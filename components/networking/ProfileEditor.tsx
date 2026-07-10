@@ -94,6 +94,9 @@ export default function ProfileEditor({ profile, onUpdated }: ProfileEditorProps
                   alt={fullName || "Foto de perfil"}
                   width={96}
                   height={96}
+                  // Avatar montado desde data del perfil (async); evitamos el
+                  // lazy por defecto para que no quede en blanco hasta refrescar.
+                  loading="eager"
                   className="size-24 rounded-full object-cover ring-2 ring-brand-violet/60 ring-offset-4 ring-offset-surface-card"
                 />
               ) : (

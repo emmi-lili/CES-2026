@@ -28,6 +28,10 @@ function AttendeeCard({ attendee }: { attendee: AttendeeProfile }) {
           alt={attendee.full_name ?? "Asistente"}
           width={80}
           height={80}
+          // Estas tarjetas se montan tras un fetch async, ya dentro del
+          // viewport; el lazy por defecto de next/image no dispara y la foto
+          // queda en blanco hasta refrescar. `eager` fuerza la carga inmediata.
+          loading="eager"
           className="size-20 rounded-full object-cover ring-2 ring-brand-violet/70 ring-offset-4 ring-offset-surface-card"
         />
       ) : (
