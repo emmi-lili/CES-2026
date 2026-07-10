@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { asset } from "@/lib/assets";
+
 type FeatureCard = {
   /** TODO: reemplazar por la imagen real de cada card (en /public). */
   image: string;
@@ -40,7 +42,7 @@ function FeatureCardItem({ image, title, subtitle, href }: FeatureCard) {
     <>
       {/* Background image — covers the whole card, gentle zoom on hover */}
       <Image
-        src={image}
+        src={asset(image)}
         alt={title}
         fill
         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

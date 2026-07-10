@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import SectionHeading from "./SectionHeading";
+import { asset } from "@/lib/assets";
 
 type Sponsor = {
   name: string;
@@ -43,7 +44,7 @@ function SponsorLogo({
   if (sponsor.logo) {
     return (
       <Image
-        src={sponsor.logo}
+        src={asset(sponsor.logo)}
         alt={sponsor.name}
         width={size}
         height={size}

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { asset } from "@/lib/assets";
+
 /**
  * Top black bar with the centered Crypto Experience Summit logo.
  */
@@ -8,7 +10,7 @@ export default function Header() {
     <header className="relative z-20 bg-black">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-center px-5">
         <Image
-          src="/ces-meru-logo.webp"
+          src={asset("/ces-meru-logo.webp")}
           alt="Crypto Experience Summit 2026"
           width={2756}
           height={1096}

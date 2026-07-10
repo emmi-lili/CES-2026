@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import SectionHeading from "./SectionHeading";
+import { asset } from "@/lib/assets";
 
 type QuickAccessItem = {
   /** Path under /public for the pre-rendered icon/badge asset. */
@@ -46,7 +47,7 @@ function QuickAccessCard({ icon, iconSize, title, description, href, iconClassNa
       {/* Icon / badge */}
       <span className="flex h-28 items-center justify-center">
         <Image
-          src={icon}
+          src={asset(icon)}
           alt={title}
           width={iconSize}
           height={iconSize}

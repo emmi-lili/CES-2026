@@ -6,6 +6,7 @@ import { LinkedInIcon, XIcon } from "./icons";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import { SPEAKERS, type Speaker } from "./speakers-data";
+import { asset } from "@/lib/assets";
 
 /** Separa el `role` ("Título\nEMPRESA") en sus dos partes. */
 function parseRole(role: string): { title: string; company?: string } {
@@ -40,7 +41,7 @@ function SpeakerCard({
       {/* Photo */}
       <div className="relative aspect-square overflow-hidden rounded-xl bg-[#4b5563]">
         <Image
-          src={photo}
+          src={asset(photo)}
           alt={name}
           fill
           priority={priority}
@@ -179,7 +180,7 @@ function SpeakerModal({
         {/* Columna izquierda: foto full-bleed con gradiente */}
         <div className="relative h-56 w-full shrink-0 md:h-auto md:w-2/5">
           <Image
-            src={photo}
+            src={asset(photo)}
             alt={name}
             fill
             priority

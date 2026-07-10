@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import SectionHeading from "./SectionHeading";
+import { asset } from "@/lib/assets";
 
 type Logo = {
   name: string;
@@ -45,7 +46,7 @@ export default function SponsorsMarquee() {
             <div className="group flex h-28 w-44 items-center justify-center p-5 sm:h-32 sm:w-52 sm:p-6">
               <div className="relative h-full w-full">
                 <Image
-                  src={logo.src}
+                  src={asset(logo.src)}
                   alt={logo.name}
                   fill
                   sizes="208px"

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { asset } from "@/lib/assets";
+
 const NAV_ITEMS = [
   { label: "Inicio", href: "/" },
   { label: "Agenda", href: "/agenda" },
@@ -60,7 +62,7 @@ export default function NavBar() {
           className="mx-1 shrink-0 sm:mx-4"
         >
           <Image
-            src="/ces-meru-logo.webp"
+            src={asset("/ces-meru-logo.webp")}
             alt="Crypto Experience Summit 2026"
             width={2756}
             height={1096}

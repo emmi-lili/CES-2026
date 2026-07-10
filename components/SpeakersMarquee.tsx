@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import SectionHeading from "./SectionHeading";
 import { SPEAKERS, type Speaker } from "./speakers-data";
+import { asset } from "@/lib/assets";
 
 /** Empresa del speaker (segunda línea del `role`), si existe. */
 function company(role: string): string | undefined {
@@ -27,7 +28,7 @@ function SpeakerTile({
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-[#4b5563] transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand-green/50 group-hover:shadow-[0_14px_36px_-12px_rgba(61,240,122,0.5)]">
         <Image
-          src={speaker.photo}
+          src={asset(speaker.photo)}
           alt={speaker.name}
           fill
           sizes="176px"
