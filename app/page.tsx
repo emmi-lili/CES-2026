@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import LegalNotice from "@/components/LegalNotice";
 import QuickAccessSection from "@/components/QuickAccessSection";
 import Reveal from "@/components/Reveal";
+import SpeakersMarquee from "@/components/SpeakersMarquee";
 import SponsorsMarquee from "@/components/SponsorsMarquee";
 
 export default function Home() {
@@ -19,6 +20,9 @@ export default function Home() {
       </Reveal>
       <Reveal>
         <FeatureCardsSection />
+      </Reveal>
+      <Reveal>
+        <SpeakersMarquee />
       </Reveal>
       <Reveal>
         <SponsorsMarquee />
