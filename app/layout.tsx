@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${sans.variable} ${display.variable} ${mono.variable}`}
+      className={`scroll-smooth ${sans.variable} ${display.variable} ${mono.variable}`}
     >
       <body className="min-h-screen bg-black font-sans antialiased">
         {children}

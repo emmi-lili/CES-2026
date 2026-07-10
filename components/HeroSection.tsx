@@ -23,8 +23,9 @@ export default function HeroSection() {
         {/* Foreground content — centered within the full-height area */}
         <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center gap-8 px-5 py-14 text-center">
           {/* Date / location pill */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#5e3996]/50 bg-[#5e3996]/20 px-4 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#c4b0e0] backdrop-blur-sm sm:text-xs">
-            28 &amp; 30 Julio 2026 • La Paz &amp; Santa Cruz, Bolivia
+          <span className="inline-flex flex-col items-center gap-0.5 rounded-2xl border border-[#5e3996]/50 bg-[#5e3996]/20 px-5 py-2 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#c4b0e0] backdrop-blur-sm sm:text-xs">
+            <span>28 &amp; 30 Julio 2026</span>
+            <span>La Paz &amp; Santa Cruz, Bolivia</span>
           </span>
 
           {/* Headline */}
