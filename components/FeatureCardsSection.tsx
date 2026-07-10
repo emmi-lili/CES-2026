@@ -78,7 +78,7 @@ function FeatureCardItem({ image, title, subtitle, href }: FeatureCard) {
  */
 export default function FeatureCardsSection() {
   return (
-    <section className="bg-[#0a0a0a] px-4 py-12">
+    <section className="bg-[#0b0e18] px-4 py-12">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {CARDS.map((card) => (
           <FeatureCardItem key={card.title} {...card} />

@@ -133,7 +133,7 @@ export default function CountdownSection() {
   }, []);
 
   return (
-    <section className="bg-black px-4 py-16">
+    <section className="bg-gradient-to-b from-black via-[#07130d] to-[#05060f] px-4 py-16">
       <SectionHeading
         kicker="Cuenta regresiva"
         subtitle="Dos ciudades, una sola experiencia. Prepárate para el summit."

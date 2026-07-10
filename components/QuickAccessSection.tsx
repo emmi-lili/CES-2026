@@ -72,7 +72,7 @@ function QuickAccessCard({ icon, iconSize, title, description, href, iconClassNa
  */
 export default function QuickAccessSection() {
   return (
-    <section className="bg-black px-4 py-12">
+    <section className="bg-[#05060f] px-4 py-12">
       <SectionHeading kicker="Explora" className="mb-10 px-5">
         Todo en un solo lugar
       </SectionHeading>

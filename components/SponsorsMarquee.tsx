@@ -23,15 +23,15 @@ const LOGOS: Logo[] = [
  */
 export default function SponsorsMarquee() {
   return (
-    <section className="relative w-full overflow-hidden bg-black py-12">
+    <section className="relative w-full overflow-hidden bg-[#05060f] py-12">
       {/* Título */}
       <SectionHeading kicker="Aliados" className="mb-10 px-5">
         Nuestros Sponsors
       </SectionHeading>
 
       {/* Degradados en los extremos: aparición/desaparición suave */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-black to-transparent sm:w-32" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-black to-transparent sm:w-32" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#05060f] to-transparent sm:w-32" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#05060f] to-transparent sm:w-32" />
 
       {/* Pista con la secuencia DUPLICADA para el loop seamless */}
       <div className="marquee-track flex w-max items-center">

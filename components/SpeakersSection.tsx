@@ -436,7 +436,7 @@ export default function SpeakersSection() {
   const rows = chunkSpeakers(speakers);
 
   return (
-    <section className="bg-[#05060f] px-4 py-16">
+    <section className="bg-gradient-to-b from-[#070610] via-[#0c0918] to-[#070610] px-4 py-16">
       {/* Heading */}
       <SectionHeading
         kicker="Lineup"
