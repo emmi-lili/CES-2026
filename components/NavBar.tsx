@@ -60,7 +60,7 @@ export default function NavBar() {
           className="mx-1 shrink-0 sm:mx-4"
         >
           <Image
-            src="/CES MERU logo ok.png"
+            src="/ces-meru-logo.webp"
             alt="Crypto Experience Summit 2026"
             width={2756}
             height={1096}

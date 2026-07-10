@@ -17,7 +17,7 @@ type QuickAccessItem = {
 
 const ITEMS: QuickAccessItem[] = [
   {
-    icon: "/ticket-lpz.png",
+    icon: "/ticket-lpz.webp",
     iconSize: 1024,
     title: "Tickets La Paz",
     description:
@@ -25,7 +25,7 @@ const ITEMS: QuickAccessItem[] = [
     href: "https://todotix.com/ticket/cryptolp",
   },
   {
-    icon: "/ticket-scz.png",
+    icon: "/ticket-scz.webp",
     iconSize: 1024,
     title: "Ticket Santa Cruz",
     description:

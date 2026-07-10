@@ -1,6 +1,9 @@
+import CountdownSection from "@/components/CountdownSection";
 import FeatureCardsSection from "@/components/FeatureCardsSection";
+import FinalCtaSection from "@/components/FinalCtaSection";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import LegalNotice from "@/components/LegalNotice";
 import QuickAccessSection from "@/components/QuickAccessSection";
 import Reveal from "@/components/Reveal";
 import SponsorsMarquee from "@/components/SponsorsMarquee";
@@ -9,6 +12,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black">
       <HeroSection />
+      <Reveal>
+        <CountdownSection />
+      </Reveal>
       <Reveal>
         <QuickAccessSection />
       </Reveal>
@@ -19,8 +25,12 @@ export default function Home() {
         <SponsorsMarquee />
       </Reveal>
       <Reveal>
+        <FinalCtaSection />
+      </Reveal>
+      <Reveal>
         <Footer />
       </Reveal>
+      <LegalNotice />
     </main>
   );
 }

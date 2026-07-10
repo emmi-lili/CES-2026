@@ -1,6 +1,7 @@
 import EventCard from "./EventCard";
 import NavBar from "./NavBar";
 import SectionBackground from "./SectionBackground";
+import SocialLinks from "./SocialLinks";
 
 /**
  * Full hero for the Crypto Experience Summit 2026 landing page.
@@ -75,6 +76,9 @@ export default function HeroSection() {
               mapUrl="https://www.google.com/maps/search/?api=1&query=Santa+Cruz+Marriott+Hotel+Bolivia"
             />
           </div>
+
+          {/* Redes sociales */}
+          <SocialLinks className="mt-2 justify-center" />
         </div>
       </div>
     </section>

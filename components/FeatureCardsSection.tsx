@@ -12,18 +12,18 @@ type FeatureCard = {
 
 const CARDS: FeatureCard[] = [
   {
-    image: "/Speakers.jpeg",
+    image: "/Speakers.webp",
     title: "Speakers",
     subtitle: "Futuro e innovación",
     href: "/speakers",
   },
   {
-    image: "/networking2.png",
+    image: "/networking2.webp",
     title: "Networking",
     subtitle: "Espacios de conversatorios",
   },
   {
-    image: "/sponsors3.png",
+    image: "/sponsors3.webp",
     title: "Sponsors",
     subtitle: "Las marcas más TOP junto a nosotros",
   },

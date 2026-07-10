@@ -14,22 +14,22 @@ type Sponsor = {
 const MAIN_SPONSORS: Sponsor[] = [
   {
     name: "Tether",
-    logo: "/TETHER.png",
+    logo: "/TETHER.webp",
     description: "La stablecoin líder a nivel mundial",
   },
 ];
 
 const PLATINUM_SPONSORS: Sponsor[] = [
-  { name: "BitGo", logo: "/BITGO.png" },
-  { name: "Meru", logo: "/meru.png" },
-  { name: "BCP", logo: "/BCP.png" },
+  { name: "BitGo", logo: "/BITGO.webp" },
+  { name: "Meru", logo: "/meru.webp" },
+  { name: "BCP", logo: "/BCP.webp" },
 ];
 
 const GOLD_SPONSORS: Sponsor[] = [
   { name: "Toyosa" },
   { name: "Prisma Payments" },
-  { name: "Iturri y Asociados", logo: "/ITURRI.png" },
-  { name: "Rain", logo: "/RAIN.png" },
+  { name: "Iturri y Asociados", logo: "/ITURRI.webp" },
+  { name: "Rain", logo: "/RAIN.webp" },
 ];
 
 /** Logo del sponsor, o su nombre como placeholder si aún no hay imagen. */

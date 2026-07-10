@@ -9,11 +9,11 @@ type Logo = {
 
 // TODO: agregar/quitar logos aquí (archivos en /public).
 const LOGOS: Logo[] = [
-  { name: "Banco de Crédito", src: "/BCP.png" },
-  { name: "BitGo", src: "/BITGO.png" },
-  { name: "Iturri & Asociados", src: "/ITURRI.png" },
-  { name: "Rain", src: "/RAIN.png" },
-  { name: "Tether", src: "/TETHER.png" },
+  { name: "Banco de Crédito", src: "/BCP.webp" },
+  { name: "BitGo", src: "/BITGO.webp" },
+  { name: "Iturri & Asociados", src: "/ITURRI.webp" },
+  { name: "Rain", src: "/RAIN.webp" },
+  { name: "Tether", src: "/TETHER.webp" },
 ];
 
 /**

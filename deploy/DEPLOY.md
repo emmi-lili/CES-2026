@@ -2,7 +2,34 @@
 
 Este proyecto se publica como **sitio estático Next.js** + **API PHP** + **MySQL** en el mismo hosting WordPress (PHP + MySQL garantizados).
 
-## 1. Preparar la base de datos
+## Despliegue actual: subcarpeta `/crypto-experience-summit`
+
+### 1. Compilar
+
+```bash
+npm run build:subfolder
+cp deploy/subfolder.htaccess out/.htaccess
+```
+
+### 2. Subir por FTPS
+
+```bash
+FTP_PASSWORD='tu-contraseña' ./scripts/upload-ftp.sh
+```
+
+Si la contraseña contiene `#`, usa comillas simples. El script pasa la clave en una linea aparte para que no se corte.
+
+Si ves `530 Login authentication failed`, verifica usuario/contraseña en cPanel → FTP Accounts.
+
+Servidor: `ftp.ideaswebbolivia.com` · Usuario: `web@digitalpartners.lat` · Puerto: `21` (FTPS explícito)
+
+### 3. Verificar
+
+`https://digitalpartners.lat/crypto-experience-summit/`
+
+---
+
+## Despliegue completo (con networking + MySQL)
 
 1. En cPanel / phpMyAdmin, crea una base de datos MySQL y un usuario con permisos.
 2. Ejecuta [`db/schema.sql`](../db/schema.sql).

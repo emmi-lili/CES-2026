@@ -8,7 +8,7 @@ export default function Header() {
     <header className="relative z-20 bg-black">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-center px-5">
         <Image
-          src="/CES MERU logo ok.png"
+          src="/ces-meru-logo.webp"
           alt="Crypto Experience Summit 2026"
           width={2756}
           height={1096}
