@@ -1,6 +1,5 @@
 import CountdownSection from "@/components/CountdownSection";
 import FeatureCardsSection from "@/components/FeatureCardsSection";
-import FinalCtaSection from "@/components/FinalCtaSection";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import LegalNotice from "@/components/LegalNotice";
@@ -23,9 +22,6 @@ export default function Home() {
       </Reveal>
       <Reveal>
         <SponsorsMarquee />
-      </Reveal>
-      <Reveal>
-        <FinalCtaSection />
       </Reveal>
       <Reveal>
         <Footer />
