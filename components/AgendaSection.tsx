@@ -24,7 +24,7 @@ const t = (hhmm: string) => {
 };
 
 /** Vertical density of the timeline (px per minute). */
-const PX_PER_MIN = 2.1;
+const PX_PER_MIN = 3.4;
 /** Left gutter reserved for the hour labels. */
 const GUTTER = 54;
 
@@ -39,6 +39,8 @@ type Session = {
   org?: string;
   /** Country badge. */
   country?: string;
+  /** Talk subject / description. */
+  topic?: string;
   /** Extra muted line, e.g. panel participants. */
   note?: string;
   /** Speaker still to be announced. */
@@ -68,47 +70,216 @@ const AGENDAS: Agenda[] = [
     date: "2026-07-28",
     dateLabel: "28 de Julio",
     dayLabel: "DÍA 1 DE 2",
-    venue: "La Paz · Casa Grande",
+    venue: "La Paz · Hotel Casa Grande",
     subtitle:
       "Un día enfocado en el futuro de la privacidad, stablecoins y la nueva economía on-chain.",
     sessions: [
-      { start: "08:30", end: "09:00", title: "Apertura", category: "charla", org: "Crypto Experience Summit" },
-      { start: "09:00", end: "09:30", title: "Carlos Neira", category: "charla", org: "Meru", country: "Colombia" },
-      { start: "09:30", end: "10:00", title: "Jorge Eguino", category: "charla", org: "Rain", country: "Bolivia" },
-      { start: "10:00", end: "10:30", title: "Juan Carlos Reyes", category: "charla", org: "CNAD", country: "El Salvador" },
-      { start: "10:30", end: "11:00", title: "Andrés Kim", category: "charla", org: "Tether", country: "Venezuela" },
-      { start: "11:00", end: "11:30", title: "Mario Patiño", category: "charla", org: "BCP", country: "Bolivia" },
+      { start: "08:00", end: "08:30", title: "Acreditación", category: "networking" },
+      { start: "08:30", end: "08:40", title: "Apertura y Bienvenida", category: "charla", org: "Crypto Experience Summit" },
       {
-        start: "11:30",
-        end: "12:00",
+        start: "08:40",
+        end: "08:58",
+        title: "Carlos Neira",
+        category: "charla",
+        org: "Meru",
+        country: "Colombia",
+        topic: "2030 Bolivia líder regional de cripto/web3, ¿cómo llegamos?",
+      },
+      {
+        start: "08:58",
+        end: "09:16",
+        title: "Jorge Eguino",
+        category: "charla",
+        org: "Rain",
+        country: "Estados Unidos",
+        topic: "Stablecoins: del ahorro al gasto",
+      },
+      {
+        start: "09:16",
+        end: "09:34",
+        title: "Juan Carlos Reyes",
+        category: "charla",
+        org: "CNAD",
+        country: "El Salvador",
+        topic: "Activos digitales y la oportunidad de Bolivia",
+      },
+      {
+        start: "09:34",
+        end: "09:52",
+        title: "Andrés Kim",
+        category: "charla",
+        org: "Tether",
+        country: "Venezuela",
+        topic: "Tether Gold",
+      },
+      {
+        start: "09:52",
+        end: "10:10",
+        title: "Mario Patiño",
+        category: "charla",
+        org: "BCP",
+        country: "Bolivia",
+        topic: "Tema por confirmar",
+      },
+      {
+        start: "10:10",
+        end: "10:30",
         title: "Conversatorio Toyosa · Crown",
         category: "panel",
-        note: "Edwin Saavedra, Andrés Kim, Álvaro Olivares",
+        note: "Edwin Saavedra (Toyosa), Andrés Kim (Tether), Álvaro Olivares (BitGo), Johan Hernández (Towerbank)",
       },
-      { start: "12:00", end: "12:30", title: "Coffee Break", category: "break" },
-      { start: "12:30", end: "13:00", title: "Emmi Aguilar", category: "charla", org: "Capa Zero", country: "Bolivia" },
-      { start: "13:00", end: "13:30", title: "Kublai Gómez", category: "charla", org: "Prisma Solutions", country: "Bolivia" },
-      { start: "13:30", end: "14:00", title: "Patricia Tudisco", category: "charla", org: "Banco Central del Uruguay", country: "Uruguay" },
-      { start: "14:00", end: "14:30", title: "Fernando Arriola", category: "charla", org: "Paraguay Blockchain Summit", country: "Paraguay" },
+      { start: "10:30", end: "11:00", title: "Coffee Break", category: "break" },
       {
-        start: "14:30",
-        end: "15:00",
+        start: "11:00",
+        end: "11:18",
+        title: "Emmi Aguilar",
+        category: "charla",
+        org: "Fortgate",
+        country: "Bolivia",
+        topic: "El activo invisible: identidad digital como infraestructura de valor",
+      },
+      {
+        start: "11:18",
+        end: "11:36",
+        title: "Kublai Gómez",
+        category: "charla",
+        org: "Prisma Solutions",
+        country: "Bolivia",
+        topic: "El costo de la ineficiencia: herramientas para resolver problemas de Comex y Tesorería",
+      },
+      {
+        start: "11:36",
+        end: "11:54",
+        title: "Patricia Tudisco",
+        category: "charla",
+        org: "Banco Central del Uruguay",
+        country: "Uruguay",
+        topic: "Los desafíos regulatorios y de supervisión en relación a los activos virtuales",
+      },
+      {
+        start: "11:54",
+        end: "12:12",
+        title: "Fernando Arriola",
+        category: "charla",
+        org: "Paraguay Blockchain Summit",
+        country: "Paraguay",
+        topic: "Adopción sin fricción: alianzas regionales para acelerar la adopción",
+      },
+      {
+        start: "12:12",
+        end: "12:30",
+        title: "Fernanda Juppet",
+        category: "charla",
+        org: "Digital Assets Institute",
+        country: "Chile",
+        topic: "Alicia al otro lado del espejo: transformando proyectos del mundo físico al Web3",
+      },
+      { start: "12:30", end: "13:30", title: "Almuerzo", category: "break" },
+      {
+        start: "13:30",
+        end: "13:48",
+        title: "Jorge Alberto Cerda",
+        category: "charla",
+        org: "Veridex Alethia",
+        country: "Bolivia",
+        topic: "Propuesta para habilitar la tokenización de valores en Bolivia",
+      },
+      {
+        start: "13:48",
+        end: "14:08",
         title: "Panel: Regulación de Activos Digitales",
         category: "panel",
-        note: "Fernanda Juppet, Juan Carlos Reyes, Patricia Tudisco, ASFI",
+        note: "Martín Iturri (Iturri y Asociados), Juan Carlos Reyes (CNAD), Fernanda Juppet (Digital Assets Institute), Patricia Tudisco (Banco Central del Uruguay)",
       },
-      { start: "15:00", end: "16:00", title: "Almuerzo", category: "break" },
-      { start: "16:00", end: "16:30", title: "Kublai Gómez", category: "charla", org: "Prisma Solutions", country: "Bolivia" },
-      { start: "16:30", end: "17:00", title: "Martín Iturri", category: "charla", org: "Iturri & Asociados", country: "Bolivia" },
-      { start: "17:00", end: "17:30", title: "Charla por confirmar", category: "charla", org: "Cristal", country: "Bolivia", tbc: true },
-      { start: "17:30", end: "18:00", title: "Fernanda Juppet", category: "charla", org: "Digital Assets Institute", country: "Chile" },
-      { start: "18:00", end: "18:30", title: "Gonzalo Garrido", category: "charla", org: "Onchain School", country: "España" },
-      { start: "18:30", end: "19:00", title: "Coffee Break", category: "break" },
-      { start: "19:00", end: "19:30", title: "Panel: Tokenización", category: "panel", note: "Modera: Jorge Alberto Cerda" },
-      { start: "19:30", end: "20:00", title: "Jorge Alberto Cerda", category: "charla", org: "Veridex Alethia", country: "Bolivia" },
-      { start: "20:00", end: "20:30", title: "Carlos Fernández Massi", category: "charla", org: "Finka Token", country: "Suiza" },
-      { start: "20:30", end: "21:00", title: "Carlos Olivera", category: "charla", org: "Identity Me", country: "Bolivia" },
-      { start: "21:00", end: "21:30", title: "Brissia Benavente", category: "charla", org: "Ciudata.io", country: "Bolivia" },
+      {
+        start: "14:08",
+        end: "14:26",
+        title: "Martín Iturri",
+        category: "charla",
+        org: "Iturri & Asociados",
+        country: "Bolivia",
+        topic: "De la prohibición a la regulación: el nuevo mapa legal para las EFT en Bolivia",
+      },
+      {
+        start: "14:26",
+        end: "14:44",
+        title: "Álvaro Olivares",
+        category: "charla",
+        org: "BitGo",
+        country: "Brasil",
+        topic: "2 años con USDT, ¿qué viene después? El futuro de los activos digitales en Bolivia",
+      },
+      {
+        start: "14:44",
+        end: "15:02",
+        title: "Rocío Álvarez-Ossorio",
+        category: "charla",
+        org: "Hator & DAI",
+        country: "España",
+        topic: "Activos del mundo real: casos reales de tokenización en LatAm y Europa",
+      },
+      {
+        start: "15:02",
+        end: "15:20",
+        title: "Gonzalo Garrido",
+        category: "charla",
+        org: "Onchain School",
+        country: "España",
+        topic: "OnChain School: formación, talento y empleabilidad en la nueva economía digital",
+      },
+      { start: "15:20", end: "15:40", title: "Coffee Break", category: "break" },
+      {
+        start: "15:40",
+        end: "15:58",
+        title: "Panel: Tokenización",
+        category: "panel",
+        note: "Jorge Alberto Cerda, Fernanda Juppet (Digital Assets Institute), Rocío Álvarez-Ossorio (Hator / DAI), Carlos Fernández Mazzi (Finka Token)",
+      },
+      {
+        start: "15:58",
+        end: "16:16",
+        title: "Carlos Fernández Mazzi",
+        category: "charla",
+        org: "Finka Token",
+        country: "Suiza",
+        topic: "Experiencia de tokenización de activos en Suiza",
+      },
+      {
+        start: "16:16",
+        end: "16:34",
+        title: "Joel B. Florián",
+        category: "charla",
+        org: "JH Safe",
+        country: "Perú",
+        topic: "La nueva infraestructura financiera detrás de los pagos internacionales",
+      },
+      {
+        start: "16:34",
+        end: "16:52",
+        title: "Carlos Olivera",
+        category: "charla",
+        org: "ValidMe LLC",
+        country: "México",
+        topic: "El fin del KYC repetitivo: cómo la identidad soberana (SSI) está matando la burocracia financiera",
+      },
+      {
+        start: "16:52",
+        end: "17:10",
+        title: "Brissia Benavente",
+        category: "charla",
+        org: "Cludata.io",
+        country: "Bolivia",
+        topic: "Mapeo del ecosistema de activos digitales en Bolivia",
+      },
+      {
+        start: "17:10",
+        end: "17:28",
+        title: "Laura Ambrosio",
+        category: "charla",
+        org: "Crystal Intelligence",
+        country: "México",
+        topic: "Tema por confirmar",
+      },
     ],
   },
   {
@@ -117,17 +288,216 @@ const AGENDAS: Agenda[] = [
     date: "2026-07-30",
     dateLabel: "30 de Julio",
     dayLabel: "DÍA 2 DE 2",
-    venue: "Santa Cruz · Marriott",
+    venue: "Santa Cruz · Hotel Marriott",
     subtitle:
       "El cierre del summit en Santa Cruz: adopción, remesas y el ecosistema fintech boliviano.",
     sessions: [
-      { start: "08:30", end: "09:30", title: "Registro & networking matutino", category: "networking", note: "Bienvenida del equipo CES" },
-      { start: "09:30", end: "10:30", title: "Keynote: Adopción cripto en Bolivia", category: "charla", tbc: true },
-      { start: "11:00", end: "12:00", title: "Workshop: Stablecoins para remesas", category: "charla", tbc: true },
-      { start: "12:30", end: "13:30", title: "Panel: Bancos tradicionales y Web3", category: "panel", tbc: true },
-      { start: "15:00", end: "16:00", title: "Workshop: Trading on-chain seguro", category: "charla", tbc: true },
-      { start: "16:30", end: "17:30", title: "Fireside: El futuro del dinero en LATAM", category: "charla", tbc: true },
-      { start: "19:30", end: "21:30", title: "Networking & Cóctel de cierre", category: "networking", note: "DJ en vivo · Rooftop" },
+      { start: "08:00", end: "08:30", title: "Acreditación", category: "networking" },
+      { start: "08:30", end: "08:40", title: "Apertura y Bienvenida", category: "charla", org: "Crypto Experience Summit" },
+      {
+        start: "08:40",
+        end: "08:58",
+        title: "Carlos Neira",
+        category: "charla",
+        org: "Meru",
+        country: "Colombia",
+        topic: "2030 Bolivia líder regional de cripto/web3, ¿cómo vamos?",
+      },
+      {
+        start: "08:58",
+        end: "09:16",
+        title: "Jorge Eguino",
+        category: "charla",
+        org: "Rain",
+        country: "Estados Unidos",
+        topic: "Stablecoins: del ahorro al gasto",
+      },
+      {
+        start: "09:16",
+        end: "09:34",
+        title: "Juan Carlos Reyes",
+        category: "charla",
+        org: "CNAD",
+        country: "El Salvador",
+        topic: "Activos digitales y la oportunidad de Bolivia",
+      },
+      {
+        start: "09:34",
+        end: "09:52",
+        title: "Andrés Kim",
+        category: "charla",
+        org: "Tether",
+        country: "Venezuela",
+        topic: "Tether Gold",
+      },
+      {
+        start: "09:52",
+        end: "10:10",
+        title: "Mario Patiño",
+        category: "charla",
+        org: "BCP",
+        country: "Bolivia",
+        topic: "Tema por confirmar",
+      },
+      {
+        start: "10:10",
+        end: "10:30",
+        title: "Conversatorio Toyosa · Crown",
+        category: "panel",
+        note: "Edwin Saavedra (Toyosa), Andrés Kim (Tether), Álvaro Olivares (BitGo), Johan Hernández (Towerbank)",
+      },
+      { start: "10:30", end: "11:00", title: "Coffee Break", category: "break" },
+      {
+        start: "11:00",
+        end: "11:18",
+        title: "Emmi Aguilar",
+        category: "charla",
+        org: "Fortgate",
+        country: "Bolivia",
+        topic: "El activo invisible: identidad digital como infraestructura de valor",
+      },
+      {
+        start: "11:18",
+        end: "11:36",
+        title: "Kublai Gómez",
+        category: "charla",
+        org: "Prisma Solutions",
+        country: "Bolivia",
+        topic: "El costo de la ineficiencia: herramientas para resolver problemas de Comex y Tesorería",
+      },
+      {
+        start: "11:36",
+        end: "11:54",
+        title: "Patricia Tudisco",
+        category: "charla",
+        org: "Banco Central del Uruguay",
+        country: "Uruguay",
+        topic: "Los desafíos regulatorios y de supervisión en relación a los activos virtuales",
+      },
+      {
+        start: "11:54",
+        end: "12:12",
+        title: "Fernando Arriola",
+        category: "charla",
+        org: "Paraguay Blockchain Summit",
+        country: "Paraguay",
+        topic: "Adopción sin fricción: alianzas regionales para acelerar la adopción",
+      },
+      {
+        start: "12:12",
+        end: "12:30",
+        title: "Fernanda Juppet",
+        category: "charla",
+        org: "Digital Assets Institute",
+        country: "Chile",
+        topic: "Alicia al otro lado del espejo: transformando proyectos del mundo físico al Web3",
+      },
+      { start: "12:30", end: "13:30", title: "Almuerzo", category: "break" },
+      {
+        start: "13:30",
+        end: "13:48",
+        title: "Jorge Alberto Cerda",
+        category: "charla",
+        org: "Veridex Alethia",
+        country: "Bolivia",
+        topic: "Propuesta para habilitar la tokenización de valores en Bolivia",
+      },
+      {
+        start: "13:48",
+        end: "14:08",
+        title: "Panel: Regulación de Activos Digitales",
+        category: "panel",
+        note: "Martín Iturri (Iturri y Asociados), Juan Carlos Reyes (CNAD), Fernanda Juppet (Digital Assets Institute), Patricia Tudisco (Banco Central del Uruguay)",
+      },
+      {
+        start: "14:08",
+        end: "14:26",
+        title: "Martín Iturri",
+        category: "charla",
+        org: "Iturri & Asociados",
+        country: "Bolivia",
+        topic: "De la prohibición a la regulación: el nuevo mapa legal para las EFT en Bolivia",
+      },
+      {
+        start: "14:26",
+        end: "14:44",
+        title: "Álvaro Olivares",
+        category: "charla",
+        org: "BitGo",
+        country: "Brasil",
+        topic: "2 años con USDT, ¿qué viene después? El futuro de los activos digitales en Bolivia",
+      },
+      {
+        start: "14:44",
+        end: "15:02",
+        title: "Rocío Álvarez-Ossorio",
+        category: "charla",
+        org: "Hator & DAI",
+        country: "España",
+        topic: "Activos reales, mercados digitales: casos reales de tokenización en LatAm y Europa",
+      },
+      {
+        start: "15:02",
+        end: "15:20",
+        title: "Gonzalo Garrido",
+        category: "charla",
+        org: "Onchain School",
+        country: "España",
+        topic: "OnChain School: formación, talento y empleabilidad en la nueva economía digital",
+      },
+      { start: "15:20", end: "15:40", title: "Coffee Break", category: "break" },
+      {
+        start: "15:40",
+        end: "15:58",
+        title: "Panel: Tokenización",
+        category: "panel",
+        note: "Jorge Alberto Cerda (Bolivia), Fernanda Juppet (Digital Assets Institute), Rocío Álvarez-Ossorio (Hator / DAI)",
+      },
+      {
+        start: "15:58",
+        end: "16:16",
+        title: "Juan Pablo Velasco",
+        category: "charla",
+        org: "Gobernación de Santa Cruz",
+        country: "Bolivia",
+        topic: "Tema por confirmar",
+      },
+      {
+        start: "16:16",
+        end: "16:34",
+        title: "Joel B. Florián",
+        category: "charla",
+        org: "JH Safe",
+        country: "Perú",
+        topic: "La nueva infraestructura financiera detrás de los pagos internacionales",
+      },
+      {
+        start: "16:34",
+        end: "16:52",
+        title: "Carlos Olivera",
+        category: "charla",
+        org: "VLC",
+        country: "Bolivia",
+        topic: "El fin del KYC repetitivo: cómo la identidad soberana (SSI) está matando la burocracia financiera",
+      },
+      {
+        start: "16:52",
+        end: "17:10",
+        title: "Emilio Rivero",
+        category: "charla",
+        org: "Anchorage",
+        country: "Perú",
+        topic: "Tema por confirmar",
+      },
+      {
+        start: "17:10",
+        end: "17:28",
+        title: "Laura Ambrosio",
+        category: "charla",
+        org: "Crystal Intelligence",
+        country: "México",
+        topic: "Tema por confirmar",
+      },
     ],
   },
 ];
@@ -207,6 +577,7 @@ function sessionToEvent(agenda: Agenda, s: Session): CalEvent {
     CATEGORY[s.category].label,
     "Crypto Experience Summit",
     s.org,
+    s.topic,
     s.tbc ? "Ponente por confirmar" : undefined,
     s.note,
   ].filter(Boolean);
@@ -338,7 +709,7 @@ function EventBlock({
 }) {
   const c = CATEGORY[session.category];
   const canSave = session.category !== "break";
-  const roomy = height > 58;
+  const roomy = height > 50;
 
   return (
     <article
@@ -372,8 +743,14 @@ function EventBlock({
         </p>
       )}
 
+      {roomy && session.topic && (
+        <p className="mt-1 line-clamp-2 text-xs leading-snug text-white/40">
+          {session.topic}
+        </p>
+      )}
+
       {roomy && session.note && (
-        <p className="mt-auto truncate text-xs text-white/40">{session.note}</p>
+        <p className="mt-auto line-clamp-2 text-xs leading-snug text-white/40">{session.note}</p>
       )}
 
       {session.category === "networking" && height > 80 && (
@@ -519,14 +896,20 @@ function SessionRow({
             {isNow ? "Ahora" : c.label}
           </span>
         </div>
-        {(session.org || session.country || session.tbc || session.note) && (
-          <p className="mt-0.5 truncate text-xs text-white/45">
-            {session.tbc
-              ? "Ponente por confirmar"
-              : session.note
-                ? session.note
-                : [session.org, session.country].filter(Boolean).join(" · ")}
-          </p>
+        {session.tbc ? (
+          <p className="mt-0.5 truncate text-xs text-white/45">Ponente por confirmar</p>
+        ) : (
+          (session.org || session.country) && (
+            <p className="mt-0.5 truncate text-xs text-white/55">
+              {[session.org, session.country].filter(Boolean).join(" · ")}
+            </p>
+          )
+        )}
+        {session.topic && (
+          <p className="mt-0.5 text-xs leading-snug text-white/45">{session.topic}</p>
+        )}
+        {session.note && (
+          <p className="mt-0.5 text-xs leading-snug text-white/40">{session.note}</p>
         )}
       </div>
 

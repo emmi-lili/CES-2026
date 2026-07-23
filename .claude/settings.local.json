@@ -62,7 +62,21 @@
       "WebFetch(domain:perublockchainconference.com)",
       "Bash(which magick *)",
       "Bash(python3 -c \"import PIL; print\\('Pillow', PIL.__version__\\)\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sS --max-time 25 __TRACKED_VAR__/speakers/)",
+      "Bash(curl -sS --max-time 30 __TRACKED_VAR__/AK.webp -o ak_server.webp)",
+      "Bash(xxd ak_server.webp)",
+      "Bash(md5 -q /tmp/ak_server.webp)",
+      "Bash(md5 -q out/AK.webp)",
+      "Bash(curl -sS -D - -o /dev/null --max-time 25 https://digitalpartners.lat/crypto-experience-summit/speakers/)",
+      "Bash(curl -sS --max-time 30 https://digitalpartners.lat/crypto-experience-summit/speakers/ -o /tmp/live_speakers.html)",
+      "Bash(npx --no-install playwright --version)",
+      "Bash(curl -sS -D - -o /dev/null --max-time 25 \"https://digitalpartners.lat/crypto-experience-summit/AK.webp\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(claude mcp *)",
+      "Bash(python3 *)"
     ]
   }
 }
