@@ -130,6 +130,14 @@ export const SPEAKERS: Speaker[] = [
     bio: "Emprendedor tecnológico con más de 10 años de experiencia en la industria. Cofundador de la primera plataforma de delivery online de Bolivia, posteriormente adquirida por PedidosYa, en la mayor adquisición de la historia del comercio electrónico boliviano. Ha liderado el crecimiento y expansión de empresas tecnológicas en los sectores de movilidad, fintech y energía, participando en la creación de startups de alto impacto en Latinoamérica.",
   },
   {
+    name: "Laura Ambrosio",
+    role: "Senior Researcher\nCRYSTAL INTELLIGENCE",
+    photo: "/laura.webp",
+    linkedin: "https://www.linkedin.com/in/laura-ambrosio-4971b478/?locale=es",
+    objectPosition: "center top",
+    bio: "Laura Ambrosio es especialista en seguridad y gestión de riesgos, con más de 12 años de experiencia en América Latina, colaborando con organizaciones de la sociedad civil, el sector privado y entidades gubernamentales en México y otros países. Cuenta con una maestría en Ciencias del Crimen por el University College London.\n\nEn Crystal Intelligence, ha liderado investigaciones en Norteamérica y América Latina relacionadas con activos digitales, con un enfoque particular en los flujos financieros ilícitos y los riesgos emergentes de los delitos financieros en la región. Su trabajo ha servido como puente entre equipos técnicos, analistas, autoridades y actores estratégicos del ecosistema blockchain.",
+  },
+  {
     name: "Mario Patiño",
     role: "Gerente Mesa de Dinero y Tesoreria\nBANCO DE CRÉDITO S.A.",
     photo: "/mario-patino.webp",
