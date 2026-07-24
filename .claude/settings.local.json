@@ -76,7 +76,14 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "Bash(claude mcp *)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(grep -oE '\\(src=\\\\{?[\"'\"'\"'`][^\"'\"'\"'`]*|/[A-Za-z0-9_-]+\\\\.\\(webp|png|jpg\\)\\)')",
+      "Bash(grep -rlE '[\"'\"'\"'`]/[A-Za-z0-9_-]+\\\\.\\(webp|png|jpg\\)' components/ app/)",
+      "Bash(grep -rcE '[\"'\"'\"'`]/[A-Za-z0-9_-]+\\\\.\\(webp|png|jpg\\)' components/ app/)",
+      "Bash(pip3 install *)",
+      "Bash(/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/bcce7a02-3715-43b5-a90e-425f6093ff5d/scratchpad/venv/bin/pip install *)",
+      "Bash(/private/tmp/claude-501/-Users-emmi-CRYPTO-EXPERIENCE-SUMMIT-/bcce7a02-3715-43b5-a90e-425f6093ff5d/scratchpad/venv/bin/python -)",
+      "Bash(break)"
     ]
   }
 }

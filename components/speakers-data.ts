@@ -70,6 +70,14 @@ export const SPEAKERS: Speaker[] = [
     bio: "Ingeniera de Sistemas especializada en Blockchain y Privacy Engineer, con más de seis años de trayectoria en el ecosistema tech y cripto latinoamericano. Su trabajo se ha centrado en la integración e implementación de tecnología cripto y blockchain en empresas, así como en liderar iniciativas de innovación dentro del sector bancario y financiero, donde ha acompañado a instituciones en su acercamiento a nuevas tecnologías. Actualmente cofundadora de FortgateID, un sistema de verificación de identidad enfocada en privacidad y fundadora de Capa Zero, consultorías institucionales de tecnología avanzada.",
   },
   {
+    name: "Emilio Rivero Coello",
+    role: "Product Manager\nANCHORAGE DIGITAL",
+    photo: "/emilio.webp",
+    linkedin: "https://www.linkedin.com/in/emiliorivcoello/",
+    objectPosition: "center top",
+    bio: "Emilio Rivero Coello es Gerente de Producto para Banca Corresponsal de Stablecoins en Anchorage Digital, con más de 8 años de experiencia en la intersección de stablecoins, pagos e infraestructura criptográfica. Anteriormente, lideró productos de pago en Aptos Labs y fue Jefe de Producto para Stablecoins en Bitso, tras liderar la iniciativa para obtener la primera licencia fintech de México bajo la Ley de Fintech mexicana. Posee un MBA de la Harvard Business School, una maestría en finanzas del ITAM y una licenciatura en economía del ITAM.",
+  },
+  {
     name: "Fernando Arriola",
     role: "Director\nCÁMARA PARAGUAYA DE FINTECH",
     photo: "/FA.webp",
